@@ -16,12 +16,19 @@ using System.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ChatProject.BL.Interfaces;
 
 namespace ChatProject.Web.Controllers
 {
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
+        public IUserRepository _userRepository;
+
+        public AccountController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
         public ApplicationUserManager UserManager
         {
@@ -296,6 +303,22 @@ namespace ChatProject.Web.Controllers
         {
             User currentUser = UserManager.FindById(User.Identity.GetUserId());
             return Json(new { user = currentUser }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public ActionResult UpdateUserProfile(User user)
+        {
+            try
+            {
+                _userRepository.Update(user);
+                _userRepository.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return RedirectToAction("ChatPage", "UserChat");
         }
     }
 }

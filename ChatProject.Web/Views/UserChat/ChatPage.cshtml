@@ -6,36 +6,40 @@
 
 @*<h2>ChatPage</h2>*@
 
-<link href="~/Content/ChatStyle.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
-<script src="https://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
-
-<div ng-app="app" ng-controller="AccountCtrl">
-    <iframe #myIframe id="myIframe" (load)="onLoadFunc(myIframe)" src="/Account/Token" style="display:none"></iframe>
-    <div id="frame">
-        <div id="sidepanel">
-            <div id="profile">
-                <div class="wrap">
-                    @*<div ng-if="user.Image == null">
-                            <h1>Welcome</h1>
-                            <p>Welcome to my home.</p>
-                            <hr>
-                        </div>*@
-                    <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-                    <p>{{user.Email}}</p>
-                    <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
+<html>
+<head>
+    <link href="~/Content/ChatStyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
+    <script src="https://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
+</head>
+<body class="pad">
+    <div ng-app="app" ng-controller="AccountCtrl">
+        <iframe #myIframe id="myIframe" (load)="onLoadFunc(myIframe)" src="/Account/Token" style="display:none"></iframe>
+        <div id="frame">
+            <div id="sidepanel">
+                <div id="profile">
+                    <div class="wrap">
+                        <div ng-click="launch('create')">
+                            <img id="profile-img" src="~/Images/{{user.Image}}" class="online" alt="" />
+                        </div>
+                        <div ng-if="user.FirstName == null && user.LastName == null">
+                            <p>{{user.Email}}</p>
+                        </div>
+                        <div ng-if="!(user.FirstName == null && user.LastName == null)">
+                            <p>{{user.FirstName + " " + user.LastName}}</p>
+                        </div>
+                        <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
+                    </div>
                 </div>
-            </div>
-            <div id="search">
-                <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-                <input type="text" placeholder="Search contacts..." />
-            </div>
+                <div id="search">
+                    <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+                    <input type="text" placeholder="Search contacts..." />
+                </div>
 
-            <div id="contacts">
-                <ul>
-                    <li class="contact">
+                <div id="contacts">
+                    @*<li class="contact">
                         <div class="wrap">
                             <span class="contact-status online"></span>
                             <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
@@ -44,80 +48,130 @@
                                 <p class="preview">You just got LITT up, Mike.</p>
                             </div>
                         </div>
-                    </li>
-                    <li class="contact active">
-                        <div class="wrap">
+                        <li class="contact active">
+                    </li>*@
+                    <div ng-repeat="item in requestsToUser">
+                        <ul class="request">
+                            <li class="contact">
+                                <div class="wrap">
+                                    <span class="contact-status away"></span>
+                                    <img src="~/Images/{{item.Image}}" alt="" />
+                                    <div class="meta">
+                                        <div ng-if="item.FirstName == null && item.LastName == null">
+                                            <p class="name">{{item.Email}}</p>
+                                        </div>
+                                        <div ng-if="!(item.FirstName == null && item.LastName == null)">
+                                            <p class="name">{{item.FirstName + " " + item.LastName}}</p>
+                                        </div>
+                                        <p class="preview"></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-repeat="item in userFriends">
+                        <ul>
+                            <li class="contact">
+                                <div class="wrap">
+                                    <img src="~/Images/{{item.Image}}" alt="" />
+                                    <div class="meta">
+                                        <div ng-if="item.FirstName == null && item.LastName == null">
+                                            <p class="name">{{item.Email}}</p>
+                                        </div>
+                                        <div ng-if="!(item.FirstName == null && item.LastName == null)">
+                                            <p class="name">{{item.FirstName + " " + item.LastName}}</p>
+                                        </div>
+                                        <p class="preview"></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-repeat="item in userRequests">
+                        <ul class="request">
+                            <li class="contact">
+                                <div class="wrap">
+                                    <span class="contact-status busy"></span>
+                                    <img src="~/Images/{{item.Image}}" alt="" />
+                                    <div class="meta">
+                                        <div ng-if="item.FirstName == null && item.LastName == null">
+                                            <p class="name">{{item.Email}}</p>
+                                        </div>
+                                        <div ng-if="!(item.FirstName == null && item.LastName == null)">
+                                            <p class="name">{{item.FirstName + " " + item.LastName}}</p>
+                                        </div>
+                                        <p class="preview"></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div id="bottom-bar">
+                    <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="contact-profile">
+                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                    <p>Harvey Specter</p>
+                </div>
+                <div class="messages">
+                    <ul>
+                        <li class="sent">
+                            <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+                            <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+                        </li>
+                        <li class="replies">
                             <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                            <div class="meta">
-                                <p class="name">Harvey Specter</p>
-                                <p class="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div id="bottom-bar">
-                <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-            </div>
-        </div>
-        <div class="content">
-            <div class="contact-profile">
-                <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                <p>Harvey Specter</p>
-                @*<div class="social-media">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                    </div>*@
-            </div>
-            <div class="messages">
-                <ul>
-                    <li class="sent">
-                        <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                        <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-                    </li>
-                    <li class="replies">
-                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                        <p>When you're backed against the wall, break the god damn thing down.</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="message-input">
-                <div class="wrap">
-                    <input class="myMessageInput" type="text" placeholder="Write your message..." />
-                    @*<i class="fa fa-paperclip attachment" aria-hidden="true"></i>*@
-                    <button class="submit"><i class="fa fa-paper-plane-o"></i></button>
+                            <p>When you're backed against the wall, break the god damn thing down.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="message-input">
+                    <div class="wrap">
+                        <input class="myMessageInput" type="text" placeholder="Write your message..." />
+                        @*<i class="fa fa-paperclip attachment" aria-hidden="true"></i>*@
+                        <button class="submit"><i class="fa fa-paper-plane-o"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <button class="btn btn-warning" ng-click="launch('create')">Custom Dialog</button>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-md-12">
-            <p>
-                <span class="text-info">Your Name</span>: {{name}}
+            @*<p>
+                <span class="text-info">FirstName</span>: {{user.FirstName}}
             </p>
-        </div>
+            <p>
+                <span class="text-info">LastName</span>: {{user.LastName}}
+            </p>
+            <p>
+                <span class="text-info">id</span>: {{user.Id}}
+            </p>
+            <input type="button" value="Submit" ng-click="UpdateUserProfile()" />*@
     </div>
-
-</div>
+</body>
+</html>
 
 <script type="text/javascript">
     (function () {
-        var app = angular.module('app', []);
+        var app = angular.module('app', ['ui.bootstrap', 'dialogs']);
 
-        app.controller('AccountCtrl', ['$scope', '$http', function ($scope, $http, $rootScope, $timeout, $dialogs) {
+        app.controller('AccountCtrl', ['$scope', '$http', '$dialogs', '$rootScope', function ($scope, $http, $dialogs, $rootScope) {
             $scope.user = {};
             $scope.token = {};
+            $scope.userFriends = {};
+            $scope.userRequests = {};
+            $scope.requestsToUser = {};
 
             $scope.getUser = function () {
                 $http.get('/Account/GetUser').then(
                     function (successResponse) {
                         $scope.user = successResponse.data.user;
+                        $rootScope.user = successResponse.data.user;
+                        $scope.getUsersFriends();
+                        $scope.getUserRequests();
+                        $scope.GetRequestsToUser();
                     },
                     function (errorResponse) {
                         // handle errors here
@@ -134,45 +188,117 @@
                     });
             };
 
-            $scope.getToken();
-            $scope.getUser();
-
-            $scope.name = '"Your name here."';
+            $scope.UpdateUserProfile = function () {
+                var post = $http({
+                    method: "POST",
+                    url: "/Account/UpdateUserProfile",
+                    dataType: 'json',
+                    data: { user: $scope.user },
+                    headers: { "Content-Type": "application/json" }
+                });
+            }
 
             $scope.launch = function (which) {
                 var dlg = null;
                 switch (which) {
-                    // Create Your Own Dialog
                     case 'create':
-                        dlg = $dialogs.create('/dialogs/whatsyourname.html', 'whatsYourNameCtrl', {}, { key: false, back: 'static' });
-                        dlg.result.then(function (name) {
-                            $scope.name = name;
+                        dlg = $dialogs.create('/dialogs/whatsyourname.html', 'UserProfileCtrl', { $user: $scope.user }, { key: false, back: 'static' });
+                        dlg.result.then(function (user) {
+                            $scope.user.FirstName = user.FirstName;
+                            $scope.user.LastName = user.LastName;
+                            $scope.user.Image = user.Image;
+                            $scope.UpdateUserProfile();
                         }, function () {
-                            $scope.name = 'You decided not to enter in your name, that makes me sad.';
                         });
 
                         break;
-                }; // end switch
-            }; // end launch
+                };
+            };
+
+            $scope.getUsersFriends = function () {
+                $http({
+                    url: '/UserFriends/GetUserFriends',
+                    method: "GET",
+                    params: { userId: $scope.user.Id }
+                }).then(
+                function (successResponse) {
+                    $scope.userFriends = successResponse.data.userFriends;
+                },
+                function (errorResponse) {
+                    // handle errors here
+                });
+            };
+
+            $scope.getUserRequests = function () {
+                $http({
+                    url: '/UserFriends/GetUserRequests',
+                    method: "GET",
+                    params: { userId: $scope.user.Id }
+                }).then(
+                    function (successResponse) {
+                        $scope.userRequests = successResponse.data.userRequests;
+                    },
+                    function (errorResponse) {
+                        // handle errors here
+                    });
+            };
+
+            $scope.GetRequestsToUser = function () {
+                $http({
+                    url: '/UserFriends/GetRequestsToUser',
+                    method: "GET",
+                    params: { userId: $scope.user.Id }
+                }).then(
+                    function (successResponse) {
+                        $scope.requestsToUser = successResponse.data.toUserRequests;
+                        console.log($scope.requestsToUser);
+                    },
+                    function (errorResponse) {
+                        // handle errors here
+                    });
+            };
+
+            //$scope.cancel = function () {
+            //    $modalInstance.dismiss('canceled');
+            //};
+
+            //$scope.save = function () {
+            //    $modalInstance.close($scope.user);
+            //};
+
+            //$scope.hitEnter = function (evt) {
+            //    if (angular.equals(evt.keyCode, 13) && !(angular.equals($scope.user, null) || angular.equals($scope.user, '')))
+            //        $scope.save();
+            //};
+
+            $scope.getUser();
+            $scope.getToken();
         }])
-            .controller('whatsYourNameCtrl', function ($scope, $modalInstance, data) {
-                $scope.user = { name: '' };
+            //.run(['$templateCache', function ($templateCache) {
+            //    $templateCache.put('/dialogs/whatsyourname.html', '<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">User\'s Profile</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">FirstName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.FirstName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">LastName:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.LastName" ng-keyup="hitEnter($event)" required></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save(); UpdateUserProfile()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
+            //}]);
+            .controller('UserProfileCtrl', function ($scope, $modalInstance, $rootScope, $http) {
+                $scope.user = { user: '' };
+
+                $scope.user = $rootScope.user;
+
+                //console.log($scope.user);
 
                 $scope.cancel = function () {
                     $modalInstance.dismiss('canceled');
-                }; // end cancel
+                };
 
                 $scope.save = function () {
-                    $modalInstance.close($scope.user.name);
+                    $modalInstance.close($scope.user);
                 }; // end save
 
                 $scope.hitEnter = function (evt) {
-                    if (angular.equals(evt.keyCode, 13) && !(angular.equals($scope.name, null) || angular.equals($scope.name, '')))
+                    if (angular.equals(evt.keyCode, 13) && !(angular.equals($scope.user, null) || angular.equals($scope.user, '')))
                         $scope.save();
-                }; // end hitEnter
-            }) // end whatsYourNameCtrl
+                };
+            })
             .run(['$templateCache', function ($templateCache) {
-                $templateCache.put('/dialogs/whatsyourname.html', '<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> User\'s Name</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">Name:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.name" ng-keyup="hitEnter($event)" required><span class="help-block">Enter your full name, first &amp; last.</span></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
+                $templateCache.put('/dialogs/whatsyourname.html', '<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">User\'s Profile</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">FirstName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.FirstName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">LastName:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.LastName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">Photo:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.Image" ng-keyup="hitEnter($event)" required></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save(); UpdateUserProfile()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
             }]);
     })();
 </script>

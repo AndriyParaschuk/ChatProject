@@ -230,3 +230,9 @@ C:\TestProject\ChatProject\ChatProject.Web\bin\Microsoft.IdentityModel.Tokens.pd
 C:\TestProject\ChatProject\ChatProject.Web\bin\Microsoft.IdentityModel.Tokens.xml
 C:\TestProject\ChatProject\ChatProject.Web\bin\System.IdentityModel.Tokens.Jwt.pdb
 C:\TestProject\ChatProject\ChatProject.Web\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\TestProject\ChatProject\ChatProject.Web\bin\System.Net.Http.Formatting.dll
+C:\TestProject\ChatProject\ChatProject.Web\bin\System.Web.Http.dll
+C:\TestProject\ChatProject\ChatProject.Web\bin\System.Web.Http.WebHost.dll
+C:\TestProject\ChatProject\ChatProject.Web\bin\System.Net.Http.Formatting.xml
+C:\TestProject\ChatProject\ChatProject.Web\bin\System.Web.Http.xml
+C:\TestProject\ChatProject\ChatProject.Web\bin\System.Web.Http.WebHost.xml

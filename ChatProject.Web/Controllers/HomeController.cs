@@ -16,10 +16,12 @@ namespace ChatProject.Web.Controllers
     {
         public IRequestRepository _requestRepository;
         public IUserRepository _userRepository;
-        public HomeController(IRequestRepository requestRepository, IUserRepository userRepository)
+        public IUserFriendRepository _userFriendRepository;
+        public HomeController(IRequestRepository requestRepository, IUserRepository userRepository, IUserFriendRepository userFriendRepository)
         {
             _requestRepository = requestRepository;
             _userRepository = userRepository;
+            _userFriendRepository = userFriendRepository;
         }
 
         public ActionResult Index()
@@ -39,7 +41,11 @@ namespace ChatProject.Web.Controllers
 
             //List<User> users = _userRepository.GetAll().ToList();
             //_requestRepository.Create(new Request { FromId = users[0].Id, ToId = users[1].Id });
+            //_requestRepository.Create(new Request { FromId = users[3].Id, ToId = users[0].Id });
             //_requestRepository.SaveChanges();
+            //_userFriendRepository.Create(new UserFriend { UserId = users[0].Id, FriendId = users[1].Id });
+            //_userFriendRepository.Create(new UserFriend { UserId = users[2].Id, FriendId = users[0].Id });
+            //_userFriendRepository.SaveChanges();
             return View();
         }
     }
