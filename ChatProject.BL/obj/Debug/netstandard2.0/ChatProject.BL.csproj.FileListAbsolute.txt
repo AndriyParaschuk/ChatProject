@@ -10,3 +10,12 @@ C:\TestProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.B
 C:\TestProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.dll
 C:\TestProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.xml
 C:\TestProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.csproj.CopyComplete
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.csprojAssemblyReference.cache
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.csproj.CoreCompileInputs.cache
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.AssemblyInfoInputs.cache
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.AssemblyInfo.cs
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.dll
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.pdb
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\ChatProject.BL.deps.json
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\ChatProject.BL.dll
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\ChatProject.BL.pdb

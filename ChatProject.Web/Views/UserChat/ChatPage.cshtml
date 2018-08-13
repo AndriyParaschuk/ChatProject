@@ -16,6 +16,9 @@
 </head>
 <body class="pad">
     <div ng-app="app" ng-controller="AccountCtrl">
+        @*<div ng-if="user.Image == null">
+            {{launch('create')}}
+        </div>*@
         <iframe #myIframe id="myIframe" (load)="onLoadFunc(myIframe)" src="/Account/Token" style="display:none"></iframe>
         <div id="frame">
             <div id="sidepanel">
@@ -24,11 +27,14 @@
                         <div ng-click="launch('create')">
                             <img id="profile-img" src="~/Images/{{user.Image}}" class="online" alt="" />
                         </div>
-                        <div ng-if="user.FirstName == null && user.LastName == null">
+                        @*<div ng-if="user.FirstName == null && user.LastName == null">
                             <p>{{user.Email}}</p>
                         </div>
                         <div ng-if="!(user.FirstName == null && user.LastName == null)">
                             <p>{{user.FirstName + " " + user.LastName}}</p>
+                        </div>*@
+                        <div>
+                            <p>{{user.UserName}}</p>
                         </div>
                         <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
                     </div>
@@ -57,12 +63,13 @@
                                     <span class="contact-status away"></span>
                                     <img src="~/Images/{{item.Image}}" alt="" />
                                     <div class="meta">
-                                        <div ng-if="item.FirstName == null && item.LastName == null">
-                                            <p class="name">{{item.Email}}</p>
+                                        @*<div ng-if="item.FirstName == null && item.LastName == null">
+                                        <p class="name">{{item.Email}}</p>
                                         </div>
                                         <div ng-if="!(item.FirstName == null && item.LastName == null)">
                                             <p class="name">{{item.FirstName + " " + item.LastName}}</p>
-                                        </div>
+                                        </div>*@
+                                        <p>{{item.UserName}}</p>
                                         <p class="preview"></p>
                                     </div>
                                 </div>
@@ -75,12 +82,13 @@
                                 <div class="wrap">
                                     <img src="~/Images/{{item.Image}}" alt="" />
                                     <div class="meta">
-                                        <div ng-if="item.FirstName == null && item.LastName == null">
+                                        @*<div ng-if="item.FirstName == null && item.LastName == null">
                                             <p class="name">{{item.Email}}</p>
                                         </div>
                                         <div ng-if="!(item.FirstName == null && item.LastName == null)">
                                             <p class="name">{{item.FirstName + " " + item.LastName}}</p>
-                                        </div>
+                                        </div>*@
+                                        <p>{{item.UserName}}</p>
                                         <p class="preview"></p>
                                     </div>
                                 </div>
@@ -94,12 +102,13 @@
                                     <span class="contact-status busy"></span>
                                     <img src="~/Images/{{item.Image}}" alt="" />
                                     <div class="meta">
-                                        <div ng-if="item.FirstName == null && item.LastName == null">
+                                        @*<div ng-if="item.FirstName == null && item.LastName == null">
                                             <p class="name">{{item.Email}}</p>
                                         </div>
                                         <div ng-if="!(item.FirstName == null && item.LastName == null)">
                                             <p class="name">{{item.FirstName + " " + item.LastName}}</p>
-                                        </div>
+                                        </div>*@
+                                        <p>{{item.UserName}}</p>
                                         <p class="preview"></p>
                                     </div>
                                 </div>
@@ -139,16 +148,16 @@
             </div>
         </div>
 
-            @*<p>
-                <span class="text-info">FirstName</span>: {{user.FirstName}}
-            </p>
-            <p>
-                <span class="text-info">LastName</span>: {{user.LastName}}
-            </p>
-            <p>
-                <span class="text-info">id</span>: {{user.Id}}
-            </p>
-            <input type="button" value="Submit" ng-click="UpdateUserProfile()" />*@
+        @*<p>
+            <span class="text-info">FirstName</span>: {{user.FirstName}}
+        </p>
+        <p>
+            <span class="text-info">LastName</span>: {{user.LastName}}
+        </p>
+        <p>
+            <span class="text-info">id</span>: {{user.Id}}
+        </p>
+        <input type="button" value="Submit" ng-click="UpdateUserProfile()" />*@
     </div>
 </body>
 </html>
@@ -298,7 +307,22 @@
                 };
             })
             .run(['$templateCache', function ($templateCache) {
-                $templateCache.put('/dialogs/whatsyourname.html', '<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">User\'s Profile</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">FirstName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.FirstName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">LastName:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.LastName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">Photo:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.Image" ng-keyup="hitEnter($event)" required></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save(); UpdateUserProfile()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
+                $templateCache.put('/dialogs/whatsyourname.html', '<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">User\'s Profile</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">UserName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.UserName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">FirstName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.FirstName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">LastName:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.LastName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">Photo:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.Image" ng-keyup="hitEnter($event)" required></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save(); UpdateUserProfile()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
             }]);
     })();
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imageUpload')
+                    .attr('src', e.target.result)
+                    .width(100)
+                    .height(100);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>

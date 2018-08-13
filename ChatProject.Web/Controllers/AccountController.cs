@@ -17,6 +17,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ChatProject.BL.Interfaces;
+using System.IO;
 
 namespace ChatProject.Web.Controllers
 {
@@ -113,7 +114,7 @@ namespace ChatProject.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await UserManager.FindAsync(model.Email, model.Password);
+                User user = await UserManager.FindByNameOrEmailAsync(model.Email, model.Password);
                 if (user == null)
                 {
                     ModelState.AddModelError("", "Wrong password or email");
@@ -307,10 +308,20 @@ namespace ChatProject.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult UpdateUserProfile(User user)
+        public ActionResult UpdateUserProfile(User user, HttpPostedFileBase image)
         {
             try
             {
+                //string fileName = Path.GetFileNameWithoutExtension(image.FileName);
+                //string extension = Path.GetExtension(image.FileName);
+                //if (fileName != user.UserName)
+                //{
+                //    fileName = user.UserName + DateTime.Now.ToFileTime() + extension;
+                //    user.Image = fileName;
+                //    fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                //    image.SaveAs(fileName);
+                //}
+                //user.Image = user.Image.Substring(12);
                 _userRepository.Update(user);
                 _userRepository.SaveChanges();
             }

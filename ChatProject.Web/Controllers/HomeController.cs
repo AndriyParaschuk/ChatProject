@@ -41,7 +41,7 @@ namespace ChatProject.Web.Controllers
 
             //List<User> users = _userRepository.GetAll().ToList();
             //_requestRepository.Create(new Request { FromId = users[0].Id, ToId = users[1].Id });
-            //_requestRepository.Create(new Request { FromId = users[3].Id, ToId = users[0].Id });
+            //_requestRepository.Create(new Request { FromId = users[2].Id, ToId = users[0].Id });
             //_requestRepository.SaveChanges();
             //_userFriendRepository.Create(new UserFriend { UserId = users[0].Id, FriendId = users[1].Id });
             //_userFriendRepository.Create(new UserFriend { UserId = users[2].Id, FriendId = users[0].Id });

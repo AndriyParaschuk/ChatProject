@@ -14,7 +14,7 @@ namespace ChatProject.BL
         public virtual User From { get; set; }
         public virtual User To { get; set; }
 
-        [EnumDataType(typeof(RequestStatus))]
+        //[EnumDataType(typeof(RequestStatus))]
         public RequestStatus Status { get; set; } = RequestStatus.New;
     }
 }

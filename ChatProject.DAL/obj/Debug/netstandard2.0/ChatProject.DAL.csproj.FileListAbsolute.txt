@@ -10,3 +10,15 @@ C:\TestProject\ChatProject\ChatProject.DAL\bin\Debug\netstandard2.0\ChatProject.
 C:\TestProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.csproj.CopyComplete
 C:\TestProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.dll
 C:\TestProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.pdb
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\bin\Debug\netstandard2.0\ChatProject.DAL.deps.json
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\bin\Debug\netstandard2.0\ChatProject.DAL.dll
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\bin\Debug\netstandard2.0\ChatProject.DAL.pdb
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\bin\Debug\netstandard2.0\ChatProject.BL.dll
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\bin\Debug\netstandard2.0\ChatProject.BL.pdb
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.csprojAssemblyReference.cache
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.csproj.CoreCompileInputs.cache
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.AssemblyInfoInputs.cache
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.AssemblyInfo.cs
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.csproj.CopyComplete
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.dll
+D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.DAL\obj\Debug\netstandard2.0\ChatProject.DAL.pdb
