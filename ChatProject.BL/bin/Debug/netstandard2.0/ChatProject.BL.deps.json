@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "390f8bbbed1c313955fe86280d7e0d12b98769c6"
+    "signature": "8bff9b9595db8d8e4c2a51700d0e575e92f7edad"
   },
   "compilationOptions": {},
   "targets": {
@@ -13,10 +13,15 @@
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",
           "Microsoft.AspNet.Identity.Owin": "2.2.2",
           "Microsoft.Owin.Host.SystemWeb": "4.0.0",
-          "NETStandard.Library": "2.0.1",
-          "Ninject": "3.3.4",
+          "NETStandard.Library": "2.0.3",
+          "Ninject": "3.3.3",
           "Ninject.MVC5": "3.3.0",
-          "System.IdentityModel.Tokens.Jwt": "5.2.4"
+          "Ninject.Web.Common": "3.3.1",
+          "Ninject.Web.Common.WebHost": "3.3.1",
+          "Ninject.Web.WebApi": "3.3.0",
+          "Ninject.Web.WebApi.WebHost": "3.3.0",
+          "System.IdentityModel.Tokens.Jwt": "5.2.4",
+          "WebApiContrib.IoC.Ninject": "0.9.3"
         },
         "runtime": {
           "ChatProject.BL.dll": {}
@@ -53,6 +58,23 @@
           "lib/net45/Microsoft.AspNet.Identity.Owin.dll": {}
         }
       },
+      "Microsoft.AspNet.WebApi.Client/4.0.20710": {
+        "dependencies": {
+          "Microsoft.Net.Http": "2.0.20710",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "runtime": {
+          "lib/net40/System.Net.Http.Formatting.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Core/4.0.20710": {
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "4.0.20710"
+        },
+        "runtime": {
+          "lib/net40/System.Web.Http.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -79,7 +101,7 @@
       "Microsoft.IdentityModel.JsonWebTokens/5.2.4": {
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "5.2.4",
-          "NETStandard.Library": "2.0.1",
+          "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "10.0.1"
         },
         "runtime": {
@@ -88,7 +110,7 @@
       },
       "Microsoft.IdentityModel.Logging/5.2.4": {
         "dependencies": {
-          "NETStandard.Library": "2.0.1",
+          "NETStandard.Library": "2.0.3",
           "System.Diagnostics.Tracing": "4.3.0",
           "System.Globalization": "4.3.0",
           "System.IO": "4.3.0",
@@ -101,7 +123,7 @@
       "Microsoft.IdentityModel.Tokens/5.2.4": {
         "dependencies": {
           "Microsoft.IdentityModel.Logging": "5.2.4",
-          "NETStandard.Library": "2.0.1",
+          "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "10.0.1",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Tools": "4.3.0",
@@ -121,6 +143,7 @@
           "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll": {}
         }
       },
+      "Microsoft.Net.Http/2.0.20710": {},
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
       "Microsoft.Owin/4.0.0": {
@@ -170,7 +193,7 @@
           "lib/net45/Microsoft.Owin.Security.OAuth.dll": {}
         }
       },
-      "NETStandard.Library/2.0.1": {
+      "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
@@ -208,7 +231,7 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
-      "Ninject/3.3.4": {
+      "Ninject/3.3.3": {
         "dependencies": {
           "System.Reflection.Emit.ILGeneration": "4.3.0",
           "System.Reflection.Emit.Lightweight": "4.3.0"
@@ -220,6 +243,29 @@
       "Ninject.MVC5/3.3.0": {
         "runtime": {
           "lib/net45/Ninject.Web.Mvc.dll": {}
+        }
+      },
+      "Ninject.Web.Common/3.3.1": {
+        "dependencies": {
+          "Ninject": "3.3.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Ninject.Web.Common.dll": {}
+        }
+      },
+      "Ninject.Web.Common.WebHost/3.3.1": {
+        "runtime": {
+          "lib/net45/Ninject.Web.Common.WebHost.dll": {}
+        }
+      },
+      "Ninject.Web.WebApi/3.3.0": {
+        "runtime": {
+          "lib/net45/Ninject.Web.WebApi.dll": {}
+        }
+      },
+      "Ninject.Web.WebApi.WebHost/3.3.0": {
+        "runtime": {
+          "lib/net45/Ninject.Web.WebApi.WebHost.dll": {}
         }
       },
       "Owin/1.0.0": {
@@ -431,7 +477,7 @@
         "dependencies": {
           "Microsoft.IdentityModel.JsonWebTokens": "5.2.4",
           "Microsoft.IdentityModel.Tokens": "5.2.4",
-          "NETStandard.Library": "2.0.1",
+          "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "10.0.1"
         },
         "runtime": {
@@ -997,6 +1043,15 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "WebApiContrib.IoC.Ninject/0.9.3": {
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Core": "4.0.20710",
+          "Ninject": "3.3.3"
+        },
+        "runtime": {
+          "lib/net40/WebApiContrib.IoC.Ninject.dll": {}
+        }
       }
     }
   },
@@ -1034,6 +1089,20 @@
       "path": "microsoft.aspnet.identity.owin/2.2.2",
       "hashPath": "microsoft.aspnet.identity.owin.2.2.2.nupkg.sha512"
     },
+    "Microsoft.AspNet.WebApi.Client/4.0.20710": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BwFtW0cGr8tg02XalvF8MmznOpYrhquD2eXWI0oF3LLSqLMFoFkb8Pmke/7SnqkiNc+YfsaUqdXEKbjhv1Ctrw==",
+      "path": "microsoft.aspnet.webapi.client/4.0.20710",
+      "hashPath": "microsoft.aspnet.webapi.client.4.0.20710.nupkg.sha512"
+    },
+    "Microsoft.AspNet.WebApi.Core/4.0.20710": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ufD+tH4W7+eNsb4pzX5oFTDcgI6J3lffughFTkyLHPBZ+A4Eo+VncAxt3lbt9zxxbLHXIbgJHYRLvtgR5YEZAQ==",
+      "path": "microsoft.aspnet.webapi.core/4.0.20710",
+      "hashPath": "microsoft.aspnet.webapi.core.4.0.20710.nupkg.sha512"
+    },
     "Microsoft.CSharp/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -1061,6 +1130,13 @@
       "sha512": "sha512-rM/youDq83z+n1M4EojYLt++yZ4eOgs0vbkpZTufi+xNS0PS78SIyYve3KJq2++p9BLDFSx7zRr6/qsvI+gEjw==",
       "path": "microsoft.identitymodel.tokens/5.2.4",
       "hashPath": "microsoft.identitymodel.tokens.5.2.4.nupkg.sha512"
+    },
+    "Microsoft.Net.Http/2.0.20710": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OsB/5QO9tYJRLYIgBOhRl4Tssh3pw7+UAO9tMGMBg63f98GfjsniVIwLWRC0vcRr/F6HLP/NvRlHyGBhtD7Bmw==",
+      "path": "microsoft.net.http/2.0.20710",
+      "hashPath": "microsoft.net.http.2.0.20710.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
@@ -1111,12 +1187,12 @@
       "path": "microsoft.owin.security.oauth/3.0.1",
       "hashPath": "microsoft.owin.security.oauth.3.0.1.nupkg.sha512"
     },
-    "NETStandard.Library/2.0.1": {
+    "NETStandard.Library/2.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-oA6nwv9MhEKYvLpjZ0ggSpb1g4CQViDVQjLUcDWg598jtvJbpfeP2reqwI1GLW2TbxC/Ml7xL6BBR1HmKPXlTg==",
-      "path": "netstandard.library/2.0.1",
-      "hashPath": "netstandard.library.2.0.1.nupkg.sha512"
+      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
     "Newtonsoft.Json/10.0.1": {
       "type": "package",
@@ -1125,12 +1201,12 @@
       "path": "newtonsoft.json/10.0.1",
       "hashPath": "newtonsoft.json.10.0.1.nupkg.sha512"
     },
-    "Ninject/3.3.4": {
+    "Ninject/3.3.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CmbWW97FfJuh4LEOVZM/spqXl4KAulRUjqeMwRd5J9rDMQArmIYaDMU3pyzXXHT062tbF0OPIMwI7tSOtprPfg==",
-      "path": "ninject/3.3.4",
-      "hashPath": "ninject.3.3.4.nupkg.sha512"
+      "sha512": "sha512-GdYkRUQwaf3+yhEVDLr1XkPqBUY0sqlnd6YVlMpSujEmazMFPi5o3OlZ9HeCYJUHZvaZfOEyIeVw9xo2cq8u9w==",
+      "path": "ninject/3.3.3",
+      "hashPath": "ninject.3.3.3.nupkg.sha512"
     },
     "Ninject.MVC5/3.3.0": {
       "type": "package",
@@ -1138,6 +1214,34 @@
       "sha512": "sha512-NLmpKSb6OXyWR17NCdeqqpMcvyW2AXlQu5SrICQLXwYYwvCgGX++GfJ3ieeyvjSDkf2q8GihPk6Jhkf+Q0/TPw==",
       "path": "ninject.mvc5/3.3.0",
       "hashPath": "ninject.mvc5.3.3.0.nupkg.sha512"
+    },
+    "Ninject.Web.Common/3.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q7MC/rJ52+EBCuU2sVZ4zoQEzkj15xXwQsDQELzDyn2s2ka0/uQwfZ0SRVMGHR5VCTN4dhomF9/XfmFKQFBJuQ==",
+      "path": "ninject.web.common/3.3.1",
+      "hashPath": "ninject.web.common.3.3.1.nupkg.sha512"
+    },
+    "Ninject.Web.Common.WebHost/3.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-29QQwqpPLtF+GjtusOTj5iU7e7fHONWBivD0IwKM9tIrLJgaEStATasRwmrk9NgwiFUCuE874vhrcu6iR0r9Sw==",
+      "path": "ninject.web.common.webhost/3.3.1",
+      "hashPath": "ninject.web.common.webhost.3.3.1.nupkg.sha512"
+    },
+    "Ninject.Web.WebApi/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-my2enF57rk0SldEMN/tI+DuQtcwqPqngsT+3jUIwCwMAuX3sS2uiKgLpGeQ2ob38U1Zy1reoBPch/O/wRSevUw==",
+      "path": "ninject.web.webapi/3.3.0",
+      "hashPath": "ninject.web.webapi.3.3.0.nupkg.sha512"
+    },
+    "Ninject.Web.WebApi.WebHost/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BWA55c44Ucs4gpG1Pcuc1JrAI5Gc6XcwMlqkK+8/QmJqzUg6gky9db3lWFbQKdl3CauO7m4Co4mDWYh3r4yh1g==",
+      "path": "ninject.web.webapi.webhost/3.3.0",
+      "hashPath": "ninject.web.webapi.webhost.3.3.0.nupkg.sha512"
     },
     "Owin/1.0.0": {
       "type": "package",
@@ -1656,6 +1760,13 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "WebApiContrib.IoC.Ninject/0.9.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W4mT8khX00htGedMVlnHHf6DKTlBfMf+UfJy7vlAyFVrrZ64zCg/74qY4rP18EYvmwFCeE4Pdz1I43tN5qBfbQ==",
+      "path": "webapicontrib.ioc.ninject/0.9.3",
+      "hashPath": "webapicontrib.ioc.ninject.0.9.3.nupkg.sha512"
     }
   }
 }

@@ -15,5 +15,10 @@ namespace ChatProject.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Some()
+        {
+            return View("View");
+        }
     }
 }

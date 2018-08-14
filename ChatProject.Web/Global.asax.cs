@@ -3,13 +3,17 @@ using ChatProject.DAL.Core;
 using ChatProject.DAL.Repository;
 using Ninject;
 using Ninject.Web.Mvc;
+using Ninject.Web.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebApiContrib.IoC.Ninject;
+
 
 namespace ChatProject.Web
 {
@@ -17,6 +21,7 @@ namespace ChatProject.Web
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -36,7 +41,8 @@ namespace ChatProject.Web
             ninjectKernel.Bind<IMessageRepository>().To<MessageRepository>();
             ninjectKernel.Bind<IRequestRepository>().To<RequestRepository>();
             ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
-            //GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(ninjectKernel);
+
+            GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(ninjectKernel);
         }
     }
 }

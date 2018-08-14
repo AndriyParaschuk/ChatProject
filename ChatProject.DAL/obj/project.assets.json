@@ -50,6 +50,31 @@
           "lib/net45/Microsoft.AspNet.Identity.Owin.dll": {}
         }
       },
+      "Microsoft.AspNet.WebApi.Client/4.0.20710": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "[2.0.20710, 2.1.0)",
+          "Newtonsoft.Json": "4.5.6"
+        },
+        "compile": {
+          "lib/net40/System.Net.Http.Formatting.dll": {}
+        },
+        "runtime": {
+          "lib/net40/System.Net.Http.Formatting.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Core/4.0.20710": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "[4.0.20710, 4.1.0)"
+        },
+        "compile": {
+          "lib/net40/System.Web.Http.dll": {}
+        },
+        "runtime": {
+          "lib/net40/System.Web.Http.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -132,6 +157,15 @@
         },
         "runtime": {
           "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.Net.Http/2.0.20710": {
+        "type": "package",
+        "compile": {
+          "lib/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -219,7 +253,7 @@
           "lib/net45/Microsoft.Owin.Security.OAuth.dll": {}
         }
       },
-      "NETStandard.Library/2.0.1": {
+      "NETStandard.Library/2.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
@@ -271,7 +305,7 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
-      "Ninject/3.3.4": {
+      "Ninject/3.3.3": {
         "type": "package",
         "dependencies": {
           "System.Reflection.Emit.ILGeneration": "4.3.0",
@@ -291,6 +325,45 @@
         },
         "runtime": {
           "lib/net45/Ninject.Web.Mvc.dll": {}
+        }
+      },
+      "Ninject.Web.Common/3.3.1": {
+        "type": "package",
+        "dependencies": {
+          "Ninject": "3.3.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Ninject.Web.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Ninject.Web.Common.dll": {}
+        }
+      },
+      "Ninject.Web.Common.WebHost/3.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Ninject.Web.Common.WebHost.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Ninject.Web.Common.WebHost.dll": {}
+        }
+      },
+      "Ninject.Web.WebApi/3.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Ninject.Web.WebApi.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Ninject.Web.WebApi.dll": {}
+        }
+      },
+      "Ninject.Web.WebApi.WebHost/3.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Ninject.Web.WebApi.WebHost.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Ninject.Web.WebApi.WebHost.dll": {}
         }
       },
       "Owin/1.0.0": {
@@ -1501,6 +1574,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "WebApiContrib.IoC.Ninject/0.9.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Core": "4.0.20710",
+          "Ninject": "3.0.1.10"
+        },
+        "compile": {
+          "lib/net40/WebApiContrib.IoC.Ninject.dll": {}
+        },
+        "runtime": {
+          "lib/net40/WebApiContrib.IoC.Ninject.dll": {}
+        }
+      },
       "ChatProject.BL/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -1509,9 +1595,14 @@
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",
           "Microsoft.AspNet.Identity.Owin": "2.2.2",
           "Microsoft.Owin.Host.SystemWeb": "4.0.0",
-          "Ninject": "3.3.4",
+          "Ninject": "3.3.3",
           "Ninject.MVC5": "3.3.0",
-          "System.IdentityModel.Tokens.Jwt": "5.2.4"
+          "Ninject.Web.Common": "3.3.1",
+          "Ninject.Web.Common.WebHost": "3.3.1",
+          "Ninject.Web.WebApi": "3.3.0",
+          "Ninject.Web.WebApi.WebHost": "3.3.0",
+          "System.IdentityModel.Tokens.Jwt": "5.2.4",
+          "WebApiContrib.IoC.Ninject": "0.9.3"
         },
         "compile": {
           "bin/placeholder/ChatProject.BL.dll": {}
@@ -1584,6 +1675,29 @@
         "lib/net45/Microsoft.AspNet.Identity.Owin.xml",
         "microsoft.aspnet.identity.owin.2.2.2.nupkg.sha512",
         "microsoft.aspnet.identity.owin.nuspec"
+      ]
+    },
+    "Microsoft.AspNet.WebApi.Client/4.0.20710": {
+      "sha512": "BwFtW0cGr8tg02XalvF8MmznOpYrhquD2eXWI0oF3LLSqLMFoFkb8Pmke/7SnqkiNc+YfsaUqdXEKbjhv1Ctrw==",
+      "type": "package",
+      "path": "microsoft.aspnet.webapi.client/4.0.20710",
+      "files": [
+        "lib/net40/System.Net.Http.Formatting.dll",
+        "lib/net40/System.Net.Http.Formatting.xml",
+        "microsoft.aspnet.webapi.client.4.0.20710.nupkg.sha512",
+        "microsoft.aspnet.webapi.client.nuspec"
+      ]
+    },
+    "Microsoft.AspNet.WebApi.Core/4.0.20710": {
+      "sha512": "ufD+tH4W7+eNsb4pzX5oFTDcgI6J3lffughFTkyLHPBZ+A4Eo+VncAxt3lbt9zxxbLHXIbgJHYRLvtgR5YEZAQ==",
+      "type": "package",
+      "path": "microsoft.aspnet.webapi.core/4.0.20710",
+      "files": [
+        "content/web.config.transform",
+        "lib/net40/System.Web.Http.dll",
+        "lib/net40/System.Web.Http.xml",
+        "microsoft.aspnet.webapi.core.4.0.20710.nupkg.sha512",
+        "microsoft.aspnet.webapi.core.nuspec"
       ]
     },
     "Microsoft.CSharp/4.3.0": {
@@ -1700,6 +1814,20 @@
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
+    "Microsoft.Net.Http/2.0.20710": {
+      "sha512": "OsB/5QO9tYJRLYIgBOhRl4Tssh3pw7+UAO9tMGMBg63f98GfjsniVIwLWRC0vcRr/F6HLP/NvRlHyGBhtD7Bmw==",
+      "type": "package",
+      "path": "microsoft.net.http/2.0.20710",
+      "files": [
+        "lib/net40/System.Net.Http.WebRequest.dll",
+        "lib/net40/System.Net.Http.WebRequest.xml",
+        "lib/net40/System.Net.Http.dll",
+        "lib/net40/System.Net.Http.xml",
+        "lib/net45/_._",
+        "microsoft.net.http.2.0.20710.nupkg.sha512",
+        "microsoft.net.http.nuspec"
+      ]
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
       "type": "package",
@@ -1781,14 +1909,13 @@
         "microsoft.owin.security.oauth.nuspec"
       ]
     },
-    "NETStandard.Library/2.0.1": {
-      "sha512": "oA6nwv9MhEKYvLpjZ0ggSpb1g4CQViDVQjLUcDWg598jtvJbpfeP2reqwI1GLW2TbxC/Ml7xL6BBR1HmKPXlTg==",
+    "NETStandard.Library/2.0.3": {
+      "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "type": "package",
-      "path": "netstandard.library/2.0.1",
+      "path": "netstandard.library/2.0.3",
       "files": [
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "build/NETStandard.Library.targets",
         "build/netstandard2.0/NETStandard.Library.targets",
         "build/netstandard2.0/ref/Microsoft.Win32.Primitives.dll",
         "build/netstandard2.0/ref/System.AppContext.dll",
@@ -1905,7 +2032,7 @@
         "build/netstandard2.0/ref/netstandard.dll",
         "build/netstandard2.0/ref/netstandard.xml",
         "lib/netstandard1.0/_._",
-        "netstandard.library.2.0.1.nupkg.sha512",
+        "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
     },
@@ -1933,16 +2060,16 @@
         "tools/install.ps1"
       ]
     },
-    "Ninject/3.3.4": {
-      "sha512": "CmbWW97FfJuh4LEOVZM/spqXl4KAulRUjqeMwRd5J9rDMQArmIYaDMU3pyzXXHT062tbF0OPIMwI7tSOtprPfg==",
+    "Ninject/3.3.3": {
+      "sha512": "GdYkRUQwaf3+yhEVDLr1XkPqBUY0sqlnd6YVlMpSujEmazMFPi5o3OlZ9HeCYJUHZvaZfOEyIeVw9xo2cq8u9w==",
       "type": "package",
-      "path": "ninject/3.3.4",
+      "path": "ninject/3.3.3",
       "files": [
         "lib/net45/Ninject.dll",
         "lib/net45/Ninject.xml",
         "lib/netstandard2.0/Ninject.dll",
         "lib/netstandard2.0/Ninject.xml",
-        "ninject.3.3.4.nupkg.sha512",
+        "ninject.3.3.3.nupkg.sha512",
         "ninject.nuspec"
       ]
     },
@@ -1955,6 +2082,54 @@
         "lib/net45/Ninject.Web.Mvc.xml",
         "ninject.mvc5.3.3.0.nupkg.sha512",
         "ninject.mvc5.nuspec"
+      ]
+    },
+    "Ninject.Web.Common/3.3.1": {
+      "sha512": "Q7MC/rJ52+EBCuU2sVZ4zoQEzkj15xXwQsDQELzDyn2s2ka0/uQwfZ0SRVMGHR5VCTN4dhomF9/XfmFKQFBJuQ==",
+      "type": "package",
+      "path": "ninject.web.common/3.3.1",
+      "files": [
+        "lib/net45/Ninject.Web.Common.dll",
+        "lib/net45/Ninject.Web.Common.xml",
+        "lib/netstandard2.0/Ninject.Web.Common.dll",
+        "lib/netstandard2.0/Ninject.Web.Common.xml",
+        "ninject.web.common.3.3.1.nupkg.sha512",
+        "ninject.web.common.nuspec"
+      ]
+    },
+    "Ninject.Web.Common.WebHost/3.3.1": {
+      "sha512": "29QQwqpPLtF+GjtusOTj5iU7e7fHONWBivD0IwKM9tIrLJgaEStATasRwmrk9NgwiFUCuE874vhrcu6iR0r9Sw==",
+      "type": "package",
+      "path": "ninject.web.common.webhost/3.3.1",
+      "files": [
+        "content/App_Start/Ninject.Web.Common.cs.pp",
+        "contentFiles/any/net45/App_Start/Ninject.Web.Common.cs.pp",
+        "lib/net45/Ninject.Web.Common.WebHost.dll",
+        "lib/net45/Ninject.Web.Common.WebHost.xml",
+        "ninject.web.common.webhost.3.3.1.nupkg.sha512",
+        "ninject.web.common.webhost.nuspec"
+      ]
+    },
+    "Ninject.Web.WebApi/3.3.0": {
+      "sha512": "my2enF57rk0SldEMN/tI+DuQtcwqPqngsT+3jUIwCwMAuX3sS2uiKgLpGeQ2ob38U1Zy1reoBPch/O/wRSevUw==",
+      "type": "package",
+      "path": "ninject.web.webapi/3.3.0",
+      "files": [
+        "lib/net45/Ninject.Web.WebApi.dll",
+        "lib/net45/Ninject.Web.WebApi.xml",
+        "ninject.web.webapi.3.3.0.nupkg.sha512",
+        "ninject.web.webapi.nuspec"
+      ]
+    },
+    "Ninject.Web.WebApi.WebHost/3.3.0": {
+      "sha512": "BWA55c44Ucs4gpG1Pcuc1JrAI5Gc6XcwMlqkK+8/QmJqzUg6gky9db3lWFbQKdl3CauO7m4Co4mDWYh3r4yh1g==",
+      "type": "package",
+      "path": "ninject.web.webapi.webhost/3.3.0",
+      "files": [
+        "lib/net45/Ninject.Web.WebApi.WebHost.dll",
+        "lib/net45/Ninject.Web.WebApi.WebHost.xml",
+        "ninject.web.webapi.webhost.3.3.0.nupkg.sha512",
+        "ninject.web.webapi.webhost.nuspec"
       ]
     },
     "Owin/1.0.0": {
@@ -5221,6 +5396,16 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "WebApiContrib.IoC.Ninject/0.9.3": {
+      "sha512": "W4mT8khX00htGedMVlnHHf6DKTlBfMf+UfJy7vlAyFVrrZ64zCg/74qY4rP18EYvmwFCeE4Pdz1I43tN5qBfbQ==",
+      "type": "package",
+      "path": "webapicontrib.ioc.ninject/0.9.3",
+      "files": [
+        "lib/net40/WebApiContrib.IoC.Ninject.dll",
+        "webapicontrib.ioc.ninject.0.9.3.nupkg.sha512",
+        "webapicontrib.ioc.ninject.nuspec"
+      ]
+    },
     "ChatProject.BL/1.0.0": {
       "type": "project",
       "path": "../ChatProject.BL/ChatProject.BL.csproj",
@@ -5234,30 +5419,35 @@
       "Microsoft.AspNet.Identity.EntityFramework >= 2.2.2",
       "Microsoft.AspNet.Identity.Owin >= 2.2.2",
       "Microsoft.Owin.Host.SystemWeb >= 4.0.0",
-      "NETStandard.Library >= 2.0.1",
-      "Ninject >= 3.3.4",
+      "NETStandard.Library >= 2.0.3",
+      "Ninject >= 3.3.3",
       "Ninject.MVC5 >= 3.3.0",
-      "System.IdentityModel.Tokens.Jwt >= 5.2.4"
+      "Ninject.Web.Common >= 3.3.1",
+      "Ninject.Web.Common.WebHost >= 3.3.1",
+      "Ninject.Web.WebApi >= 3.3.0",
+      "Ninject.Web.WebApi.WebHost >= 3.3.0",
+      "System.IdentityModel.Tokens.Jwt >= 5.2.4",
+      "WebApiContrib.IoC.Ninject >= 0.9.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tom\\.nuget\\packages\\": {},
+    "C:\\Users\\apara\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\project\\Course\\SoftServe\\ChatProject\\ChatProject\\ChatProject.DAL\\ChatProject.DAL.csproj",
+      "projectUniqueName": "C:\\TestProject\\ChatProject\\ChatProject\\ChatProject.DAL\\ChatProject.DAL.csproj",
       "projectName": "ChatProject.DAL",
-      "projectPath": "D:\\project\\Course\\SoftServe\\ChatProject\\ChatProject\\ChatProject.DAL\\ChatProject.DAL.csproj",
-      "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-      "outputPath": "D:\\project\\Course\\SoftServe\\ChatProject\\ChatProject\\ChatProject.DAL\\obj\\",
+      "projectPath": "C:\\TestProject\\ChatProject\\ChatProject\\ChatProject.DAL\\ChatProject.DAL.csproj",
+      "packagesPath": "C:\\Users\\apara\\.nuget\\packages\\",
+      "outputPath": "C:\\TestProject\\ChatProject\\ChatProject\\ChatProject.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\apara\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5270,8 +5460,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "D:\\project\\Course\\SoftServe\\ChatProject\\ChatProject\\ChatProject.BL\\ChatProject.BL.csproj": {
-              "projectPath": "D:\\project\\Course\\SoftServe\\ChatProject\\ChatProject\\ChatProject.BL\\ChatProject.BL.csproj"
+            "C:\\TestProject\\ChatProject\\ChatProject\\ChatProject.BL\\ChatProject.BL.csproj": {
+              "projectPath": "C:\\TestProject\\ChatProject\\ChatProject\\ChatProject.BL\\ChatProject.BL.csproj"
             }
           }
         }
@@ -5304,20 +5494,40 @@
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.1, )",
+            "version": "[2.0.3, )",
             "autoReferenced": true
           },
           "Ninject": {
             "target": "Package",
-            "version": "[3.3.4, )"
+            "version": "[3.3.3, )"
           },
           "Ninject.MVC5": {
+            "target": "Package",
+            "version": "[3.3.0, )"
+          },
+          "Ninject.Web.Common": {
+            "target": "Package",
+            "version": "[3.3.1, )"
+          },
+          "Ninject.Web.Common.WebHost": {
+            "target": "Package",
+            "version": "[3.3.1, )"
+          },
+          "Ninject.Web.WebApi": {
+            "target": "Package",
+            "version": "[3.3.0, )"
+          },
+          "Ninject.Web.WebApi.WebHost": {
             "target": "Package",
             "version": "[3.3.0, )"
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",
             "version": "[5.2.4, )"
+          },
+          "WebApiContrib.IoC.Ninject": {
+            "target": "Package",
+            "version": "[0.9.3, )"
           }
         },
         "imports": [
@@ -5365,6 +5575,36 @@
       "warningLevel": 1,
       "message": "Package 'Microsoft.AspNet.Identity.Owin 2.2.2' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Identity.Owin",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Client 4.0.20710' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Client",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 4.0.20710' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Core",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Net.Http 2.0.20710' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Net.Http",
       "targetGraphs": [
         ".NETStandard,Version=v2.0"
       ]
@@ -5433,8 +5673,48 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
+      "message": "Package 'Ninject.Web.Common.WebHost 3.3.1' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Ninject.Web.Common.WebHost",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Ninject.Web.WebApi 3.3.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Ninject.Web.WebApi",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Ninject.Web.WebApi.WebHost 3.3.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Ninject.Web.WebApi.WebHost",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
       "message": "Package 'Owin 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
       "libraryId": "Owin",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'WebApiContrib.IoC.Ninject 0.9.3' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "WebApiContrib.IoC.Ninject",
       "targetGraphs": [
         ".NETStandard,Version=v2.0"
       ]

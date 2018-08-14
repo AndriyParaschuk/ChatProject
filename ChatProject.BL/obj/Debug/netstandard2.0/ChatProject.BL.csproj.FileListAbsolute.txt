@@ -19,3 +19,12 @@ D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\obj\Debug\net
 D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\ChatProject.BL.deps.json
 D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\ChatProject.BL.dll
 D:\project\Course\SoftServe\ChatProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\ChatProject.BL.pdb
+C:\TestProject\ChatProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\ChatProject.BL.deps.json
+C:\TestProject\ChatProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\ChatProject.BL.dll
+C:\TestProject\ChatProject\ChatProject\ChatProject.BL\bin\Debug\netstandard2.0\ChatProject.BL.pdb
+C:\TestProject\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.csprojAssemblyReference.cache
+C:\TestProject\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.csproj.CoreCompileInputs.cache
+C:\TestProject\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.AssemblyInfoInputs.cache
+C:\TestProject\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.AssemblyInfo.cs
+C:\TestProject\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.dll
+C:\TestProject\ChatProject\ChatProject\ChatProject.BL\obj\Debug\netstandard2.0\ChatProject.BL.pdb
