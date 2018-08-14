@@ -14,6 +14,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
     <script src="https://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body class="pad">
     <div ng-app="app" ng-controller="AccountCtrl">
@@ -278,9 +281,9 @@
                 </div>
                 <div class="message-input">
                     <div ng-repeat="item in requestsToUser">
-                        <div ng-if="item.UserName == selectedUser.UserName">
-                            <input type="button" class="requestsbutton" value="Accept">
-                            <input type="button" class="requestsbutton" value="Dicline">
+                        <div ng-if="item.UserName == selectedUser.UserName" style="text-align:center">
+                            <input type="button" class="requestsbutton btn btn-success" value="Accept" ng-click="AcceptRequest()">
+                            <input type="button" class="requestsbutton btn btn-warning" value="Decline" ng-click="DeclineRequest()">
                         </div>
                     </div>
                     <br />
@@ -450,6 +453,42 @@
                 });
             }
 
+            $scope.AcceptRequest = function () {
+                var post = $http({
+                    method: "POST",
+                    url: "/UserFriends/AcceptRequest",
+                    dataType: 'json',
+                    data: { userId: $scope.user.Id, withWhomId: $scope.selectedUser.Id },
+                    headers: { "Content-Type": "application/json" }
+                }).then(
+                    function (successResponse) {
+                        $scope.getUsersFriends();
+                        $scope.getUserRequests();
+                        $scope.GetRequestsToUser();
+                    },
+                    function (errorResponse) {
+                        // handle errors here
+                    });                
+            };
+
+            $scope.DeclineRequest = function () {
+                var post = $http({
+                    method: "POST",
+                    url: "/UserFriends/DeclineRequest",
+                    dataType: 'json',
+                    data: { userId: $scope.user.Id, withWhomId: $scope.selectedUser.Id },
+                    headers: { "Content-Type": "application/json" }
+                }).then(
+                    function (successResponse) {
+                        $scope.getUsersFriends();
+                        $scope.getUserRequests();
+                        $scope.GetRequestsToUser();
+                    },
+                    function (errorResponse) {
+                        // handle errors here
+                    }); 
+            };
+
             $scope.checkIfItFirstLogin = function () {
                 if ($scope.user.Image == null) {
                     $scope.launch('create');
@@ -477,8 +516,6 @@
                     });
             };
 
-            
-
             //$scope.cancel = function () {
             //    $modalInstance.dismiss('canceled');
             //};
@@ -493,7 +530,7 @@
             //};
 
             $interval(function () {
-                if ($scope.searchParam.length === 0) {
+                if (!$scope.searchParam) {
                     $scope.getUsersFriends();
                     $scope.getUserRequests();
                     $scope.GetRequestsToUser();
