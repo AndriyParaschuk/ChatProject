@@ -13,7 +13,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using WebApiContrib.IoC.Ninject;
-
+using ChatProject.BL.Interfaces.Services;
+using ChatProject.BL.Services;
 
 namespace ChatProject.Web
 {
@@ -41,6 +42,10 @@ namespace ChatProject.Web
             ninjectKernel.Bind<IMessageRepository>().To<MessageRepository>();
             ninjectKernel.Bind<IRequestRepository>().To<RequestRepository>();
             ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
+
+            ninjectKernel.Bind<IUserService>().To<UserService>();
+            ninjectKernel.Bind<IRequestService>().To<RequestService>();
+            ninjectKernel.Bind<IMessageService>().To<MessageService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(ninjectKernel);
         }

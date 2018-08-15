@@ -31,6 +31,7 @@ namespace ChatProject.Web.Models
         {
             Clients.All.createNewRequest(user, userToWhomSendRequest);
         }
+
         //public void SendMessage(string name, string message)
         //{
         //    Clients.All.broadcastMessage(name, message);
