@@ -98,19 +98,24 @@ namespace ChatProject.Web.Controllers
                 {
                     searchUser.Add(new SearchUser() { User = item, Status = "friend" });
                 }
-                Request isFromUserRequest = _requestRepository.GetAll().FirstOrDefault(x => x.FromId == userId && x.ToId == item.Id);
+                Request isFromUserRequest = _requestRepository.GetAll().FirstOrDefault(x => x.FromId == userId && x.ToId == item.Id && x.Status == RequestStatus.New);
                 if (isFromUserRequest != null)
                 {
                     searchUser.Add(new SearchUser() { User = item, Status = "fromUser" });
                 }
-                Request isToUserRequest = _requestRepository.GetAll().FirstOrDefault(x => x.ToId == userId && x.FromId == item.Id);
+                Request isToUserRequest = _requestRepository.GetAll().FirstOrDefault(x => x.ToId == userId && x.FromId == item.Id && x.Status == RequestStatus.New);
                 if (isToUserRequest != null)
                 {
                     searchUser.Add(new SearchUser() { User = item, Status = "toUser" });
                 }
                 if(isFriend == null && isFromUserRequest == null && isToUserRequest == null)
                 {
-                    searchUser.Add(new SearchUser() { User = item, Status = "new" });
+                    isFromUserRequest = _requestRepository.GetAll().FirstOrDefault(x => x.FromId == userId && x.ToId == item.Id);
+                    isToUserRequest = _requestRepository.GetAll().FirstOrDefault(x => x.ToId == userId && x.FromId == item.Id);
+                    if (isFromUserRequest == null && isToUserRequest == null)
+                    {
+                        searchUser.Add(new SearchUser() { User = item, Status = "new" });
+                    }
                 }
             }
 
@@ -119,7 +124,7 @@ namespace ChatProject.Web.Controllers
         }
 
         public ActionResult GetMessage(string userId, string withWhomId)
-        //public List<User> SearchUser(string userName)
+        //public List<Message> GetMessage(string userName)
         {
             List<Message> messages = _messageRepository.GetAll().Where(item => (item.ToId == userId && item.FromId == withWhomId) ||
                 (item.ToId == withWhomId && item.FromId == userId)).OrderBy(item=> item.Date).ToList();
@@ -127,42 +132,64 @@ namespace ChatProject.Web.Controllers
             //return findedUsers;
         }
 
-        public void PostMessage(string message, string userId, string toWhomId)
-        //public List<User> SearchUser(string userName)
+        public ActionResult PostMessage(string message, string userId, string toWhomId)
+        //public List<User> PostMessage(string userName)
         {
             UserFriend userFriend = _userFriendRepository.GetAll().FirstOrDefault(item => (item.UserId == userId && item.FriendId == toWhomId) ||
                 (item.UserId == toWhomId && item.FriendId == userId));
+            Message currentMessage = new Message() { FromId = userId, ToId = toWhomId, TextMessage = message };
             if (userFriend != null)
             {
-                _messageRepository.Create(new Message() { FromId = userId, ToId = toWhomId, TextMessage = message });
+                _messageRepository.Create(currentMessage);
                 _messageRepository.SaveChanges();
             }
-            //return Json(new { chatMessages = messages }, JsonRequestBehavior.AllowGet);
+ 
+            return Json(new { oneMessage = currentMessage }, JsonRequestBehavior.AllowGet);
             //return findedUsers;
         }
 
-        public void AcceptRequest(string userId, string withWhomId)
-        //public List<User> SearchUser(string userName)
+        public ActionResult AcceptRequest(string userId, string withWhomId)
+        //public List<User> AcceptRequest(string userName)
         {
-            Request request = _requestRepository.GetAll().FirstOrDefault(item => item.FromId == withWhomId && item.ToId == userId);
-            request.Status = RequestStatus.Accept;
-            _requestRepository.Update(request);
+            Request currentRequest = _requestRepository.GetAll().FirstOrDefault(item => item.FromId == withWhomId && item.ToId == userId);
+            currentRequest.Status = RequestStatus.Accept;
+            _requestRepository.Update(currentRequest);
             _requestRepository.SaveChanges();
 
-            _userFriendRepository.Create(new UserFriend() { UserId = userId, FriendId = withWhomId });
+            User currentUser = _userRepository.GetById(userId);
+            User friend = _userRepository.GetById(withWhomId);
+            UserFriend currentUserFriend = new UserFriend() { FriendId = withWhomId, UserId = userId };
+            _userFriendRepository.Create(currentUserFriend);
             _userFriendRepository.SaveChanges();
-            //return Json(new { chatMessages = messages }, JsonRequestBehavior.AllowGet);
+
+            return Json(new { user = currentUser, userFriend = friend }, JsonRequestBehavior.AllowGet);
             //return findedUsers;
         }
 
-        public void DeclineRequest(string userId, string withWhomId)
-        //public List<User> SearchUser(string userName)
+        public ActionResult DeclineRequest(string userId, string withWhomId)
+        //public List<User> DeclineRequest(string userName)
         {
             Request request = _requestRepository.GetAll().FirstOrDefault(item => item.FromId == withWhomId && item.ToId == userId);
             request.Status = RequestStatus.Decline;
             _requestRepository.Update(request);
             _requestRepository.SaveChanges();
-            //return Json(new { chatMessages = messages }, JsonRequestBehavior.AllowGet);
+
+            User currentUser = _userRepository.GetById(userId);
+            User friend = _userRepository.GetById(withWhomId);
+
+            return Json(new { user = currentUser, userFriend = friend }, JsonRequestBehavior.AllowGet);
+            //return findedUsers;
+        }
+
+        public ActionResult CreateRequest(string userId, string toWhomId)
+        //public List<User> DeclineRequest(string userName)
+        {
+            _requestRepository.Create(new Request() { FromId = userId, ToId = toWhomId });
+            _requestRepository.SaveChanges();
+
+            User currentUser = _userRepository.GetById(userId);
+            User userToWhomSend = _userRepository.GetById(toWhomId);
+            return Json(new { user = currentUser, userToWhomSendRequest = userToWhomSend }, JsonRequestBehavior.AllowGet);
             //return findedUsers;
         }
     }

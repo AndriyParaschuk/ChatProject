@@ -25,6 +25,8 @@ namespace ChatProject.Web.App_Start
                 LoginPath = new PathString("/Account/Login"),
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+
+            app.MapSignalR();
         }
     }
 }

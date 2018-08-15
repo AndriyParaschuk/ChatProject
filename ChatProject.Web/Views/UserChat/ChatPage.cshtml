@@ -11,12 +11,8 @@
     <link href="~/Content/ChatStyle.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>*@
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
-    <script src="https://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @*<script src="~/Scripts/util.js"></script>*@
 </head>
 <body class="pad">
     <div ng-app="app" ng-controller="AccountCtrl">
@@ -26,8 +22,8 @@
                 <div id="profile">
                     <div class="wrap">
                         @*<div ng-if="checkIfItFirstLogin()">
-                            {{launch('create')}}
-                        </div>*@
+                                {{launch('create')}}
+                            </div>*@
                         <div ng-click="launch('create')">
                             <img id="profile-img" src="~/Images/{{user.Image}}" class="online" alt="" />
                         </div>
@@ -44,16 +40,16 @@
                 <br>
                 <div id="contacts">
                     @*<li class="contact">
-                        <div class="wrap">
-                            <span class="contact-status online"></span>
-                            <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                            <div class="meta">
-                                <p class="name">Louis Litt</p>
-                                <p class="preview">You just got LITT up, Mike.</p>
+                            <div class="wrap">
+                                <span class="contact-status online"></span>
+                                <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+                                <div class="meta">
+                                    <p class="name">Louis Litt</p>
+                                    <p class="preview">You just got LITT up, Mike.</p>
+                                </div>
                             </div>
-                        </div>
-                        <li class="contact active">
-                    </li>*@
+                            <li class="contact active">
+                        </li>*@
                     <div ng-if="!searchParam">
                         <div ng-repeat="item in requestsToUser">
                             <ul ng-if="item.UserName != selectedUser.UserName">
@@ -190,7 +186,7 @@
                                 <ul ng-if="item.User.UserName != selectedUser.UserName">
                                     <li class="contact" ng-click="setSelectedUser(item.User)">
                                         <div class="wrap">
-                                            <span class="contact-status busy"></span>
+                                            <span class="contact-status away"></span>
                                             <img src="~/Images/{{item.User.Image}}" alt="" />
                                             <div class="meta">
                                                 <p>{{item.User.UserName}}</p>
@@ -202,7 +198,7 @@
                                 <ul ng-if="item.User.UserName == selectedUser.UserName">
                                     <li class="contact active" ng-click="setSelectedUser(item.User)">
                                         <div class="wrap">
-                                            <span class="contact-status busy"></span>
+                                            <span class="contact-status away"></span>
                                             <img src="~/Images/{{item.User.Image}}" alt="" />
                                             <div class="meta">
                                                 <p>{{item.User.UserName}}</p>
@@ -216,7 +212,7 @@
                                 <ul ng-if="item.User.UserName != selectedUser.UserName">
                                     <li class="contact" ng-click="setSelectedUser(item.User)">
                                         <div class="wrap">
-                                            <span class="contact-status away"></span>
+                                            <span class="contact-status busy"></span>
                                             <img src="~/Images/{{item.User.Image}}" alt="" />
                                             <div class="meta">
                                                 <p>{{item.User.UserName}}</p>
@@ -228,7 +224,7 @@
                                 <ul ng-if="item.UserName == selectedUser.UserName">
                                     <li class="contact active" ng-click="setSelectedUser(item.User)">
                                         <div class="wrap">
-                                            <span class="contact-status away"></span>
+                                            <span class="contact-status busy"></span>
                                             <img src="~/Images/{{item.User.Image}}" alt="" />
                                             <div class="meta">
                                                 <p>{{item.User.UserName}}</p>
@@ -242,8 +238,8 @@
                     </div>
                 </div>
                 @*<div id="bottom-bar">
-                    <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-                </div>*@
+                        <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
+                    </div>*@
             </div>
             <div class="content">
                 <div class="contact-profile" ng-if="selectedUser.UserName != null">
@@ -264,26 +260,17 @@
                             </li>
                         </ul>
                     </div>
-                    @*<div ng-repeat="item in requestsToUser">
-                        <div ng-if="item.UserName == selectedUser.UserName">
-                            <ul>
-                                <li class="sent">
-                                    <button>Accept</button>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li class="replies">
-                                    <button>Dicline</button>
-                                </li>
-                            </ul>                       
-                        </div>
-                    </div>*@
                 </div>
                 <div class="message-input">
                     <div ng-repeat="item in requestsToUser">
                         <div ng-if="item.UserName == selectedUser.UserName" style="text-align:center">
                             <input type="button" class="requestsbutton btn btn-success" value="Accept" ng-click="AcceptRequest()">
                             <input type="button" class="requestsbutton btn btn-warning" value="Decline" ng-click="DeclineRequest()">
+                        </div>
+                    </div>
+                    <div ng-repeat="item in findedUsers">
+                        <div ng-if="item.Status == 'new' && item.User.UserName == selectedUser.UserName" style="text-align:center">
+                            <input type="button" class="requestsbutton btn btn-success" value="Add" ng-click="CreateRequest()">
                         </div>
                     </div>
                     <br />
@@ -297,307 +284,380 @@
         </div>
 
         @*<p>
-            <span class="text-info">FirstName</span>: {{user.FirstName}}
-        </p>
-        <p>
-            <span class="text-info">LastName</span>: {{user.LastName}}
-        </p>
-        <p>
-            <span class="text-info">id</span>: {{user.Id}}
-        </p>
-        <input type="button" value="Submit" ng-click="UpdateUserProfile()" />*@
+                <span class="text-info">FirstName</span>: {{user.FirstName}}
+            </p>
+            <p>
+                <span class="text-info">LastName</span>: {{user.LastName}}
+            </p>
+            <p>
+                <span class="text-info">id</span>: {{user.Id}}
+            </p>
+            <input type="button" value="Submit" ng-click="UpdateUserProfile()" />*@
     </div>
 </body>
 </html>
+@section scripts {
 
-<script type="text/javascript">
-    (function () {
-        var app = angular.module('app', ['ui.bootstrap', 'dialogs']);
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
-        app.controller('AccountCtrl', ['$scope', '$http', '$dialogs', '$rootScope', '$interval', function ($scope, $http, $dialogs, $rootScope, $interval) {
-            $scope.selectedUser = {};
-            $scope.user = {};
-            $scope.token = {};
-            $scope.userFriends = {};
-            $scope.userRequests = {};
-            $scope.requestsToUser = {};
-            $scope.findedUsers = {};
-            $scope.chatMessages = {};
-            $scope.searchParam;
-            $scope.message;
-            $scope.userStatus = "friend";
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
+    <script src="https://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
 
-            $scope.getUser = function () {
-                $http.get('/Account/GetUser').then(
-                    function (successResponse) {
-                        $scope.user = successResponse.data.user;
-                        $rootScope.user = successResponse.data.user;
-                        $scope.checkIfItFirstLogin();
-                        $scope.getUsersFriends();
-                        $scope.getUserRequests();
-                        $scope.GetRequestsToUser();
-                    },
-                    function (errorResponse) {
-                        // handle errors here
-                    });
-            };
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-            $scope.getToken = function () {
-                $http.get('/Account/Token').then(
-                    function (successResponse) {
-                        $scope.token = successResponse.data.token;
-                    },
-                    function (errorResponse) {
-                        // handle errors here
-                    });
-            };
+    <script src="~/Scripts/jquery.signalR-2.3.0.js" type="text/javascript"></script>
+    <script src="~/signalr/hubs"></script>
 
-            $scope.UpdateUserProfile = function () {
-                var post = $http({
-                    method: "POST",
-                    url: "/Account/UpdateUserProfile",
-                    dataType: 'json',
-                    data: { user: $scope.user },
-                    headers: { "Content-Type": "application/json" }
-                });
-            }
+    <script type="text/javascript">
+        (function () {
+            var app = angular.module('app', ['ui.bootstrap', 'dialogs'])
+                .controller('AccountCtrl', ['$scope', '$http', '$dialogs', '$rootScope', '$interval', '$filter', function ($scope, $http, $dialogs, $rootScope, $interval, $filter) {
+                    $scope.selectedUser = {};
+                    $scope.user = {};
+                    $scope.token = {};
+                    $scope.userFriends = {};
+                    $scope.userRequests = {};
+                    $scope.requestsToUser = {};
+                    $scope.findedUsers = {};
+                    $scope.chatMessages = {};
+                    $scope.searchParam;
+                    $scope.message;
 
-            $scope.launch = function (which) {
-                var dlg = null;
-                switch (which) {
-                    case 'create':
-                        dlg = $dialogs.create('/dialogs/whatsyourname.html', 'UserProfileCtrl', { $user: $scope.user }, { key: false, back: 'static' });
-                        dlg.result.then(function (user) {
-                            $scope.user.FirstName = user.FirstName;
-                            $scope.user.LastName = user.LastName;
-                            $scope.user.Image = user.Image;
-                            $scope.UpdateUserProfile();
-                        }, function () {
+                    //$scope.chatHub = null;
+                    $scope.chatHub = $.connection.chatHub;
+                    $.connection.hub.start();
+
+                    $scope.getUser = function () {
+                        $http.get('/Account/GetUser').then(
+                            function (successResponse) {
+                                $scope.user = successResponse.data.user;
+                                $rootScope.user = successResponse.data.user;
+                                $scope.checkIfItFirstLogin();
+                                $scope.getUsersFriends();
+                                $scope.getUserRequests();
+                                $scope.GetRequestsToUser();
+                                console.log($scope.today);
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
+
+                    $scope.getToken = function () {
+                        $http.get('/Account/Token').then(
+                            function (successResponse) {
+                                $scope.token = successResponse.data.token;
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
+
+                    $scope.UpdateUserProfile = function () {
+                        var post = $http({
+                            method: "POST",
+                            url: "/Account/UpdateUserProfile",
+                            dataType: 'json',
+                            data: { user: $scope.user },
+                            headers: { "Content-Type": "application/json" }
                         });
+                    }
 
-                        break;
-                };
-            };
+                    $scope.launch = function (which) {
+                        var dlg = null;
+                        switch (which) {
+                            case 'create':
+                                dlg = $dialogs.create('/dialogs/whatsyourname.html', 'UserProfileCtrl', { $user: $scope.user }, { key: false, back: 'static' });
+                                dlg.result.then(function (user) {
+                                    $scope.user.FirstName = user.FirstName;
+                                    $scope.user.LastName = user.LastName;
+                                    $scope.user.Image = user.Image;
+                                    $scope.UpdateUserProfile();
+                                }, function () {
+                                });
 
-            $scope.getUsersFriends = function () {
-                $http({
-                    url: '/UserFriends/GetUserFriends',
-                    method: "GET",
-                    params: { userId: $scope.user.Id }
-                }).then(
-                function (successResponse) {
-                    $scope.userFriends = successResponse.data.userFriends;
-                    //console.log("friend");
-                },
-                function (errorResponse) {
-                    // handle errors here
-                });
-            };
+                                break;
+                        };
+                    };
 
-            $scope.getUserRequests = function () {
-                $http({
-                    url: '/UserFriends/GetUserRequests',
-                    method: "GET",
-                    params: { userId: $scope.user.Id }
-                }).then(
-                    function (successResponse) {
-                        $scope.userRequests = successResponse.data.userRequests;
-                    },
-                    function (errorResponse) {
-                        // handle errors here
-                    });
-            };
+                    $scope.getUsersFriends = function () {
+                        $http({
+                            url: '/UserFriends/GetUserFriends',
+                            method: "GET",
+                            params: { userId: $scope.user.Id }
+                        }).then(
+                            function (successResponse) {
+                                $scope.userFriends = successResponse.data.userFriends;
+                                //console.log("friend");
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
 
-            $scope.GetRequestsToUser = function () {
-                $http({
-                    url: '/UserFriends/GetRequestsToUser',
-                    method: "GET",
-                    params: { userId: $scope.user.Id }
-                }).then(
-                    function (successResponse) {
-                        $scope.requestsToUser = successResponse.data.toUserRequests;
-                        //console.log($scope.requestsToUser);
-                    },
-                    function (errorResponse) {
-                        // handle errors here
-                    });
-            };
+                    $scope.getUserRequests = function () {
+                        $http({
+                            url: '/UserFriends/GetUserRequests',
+                            method: "GET",
+                            params: { userId: $scope.user.Id }
+                        }).then(
+                            function (successResponse) {
+                                $scope.userRequests = successResponse.data.userRequests;
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
 
-            $scope.setSelectedUser = function (selectedUser) {
-                $scope.selectedUser = selectedUser;
-                //$scope.GetMessage();
-            }
+                    $scope.GetRequestsToUser = function () {
+                        $http({
+                            url: '/UserFriends/GetRequestsToUser',
+                            method: "GET",
+                            params: { userId: $scope.user.Id }
+                        }).then(
+                            function (successResponse) {
+                                $scope.requestsToUser = successResponse.data.toUserRequests;
+                                //console.log($scope.requestsToUser);
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
 
-            $scope.GetMessage = function () {
-                $http({
-                    url: '/UserFriends/GetMessage',
-                    method: "GET",
-                    params: { userId: $scope.user.Id, withWhomId: $scope.selectedUser.Id }
-                }).then(
-                    function (successResponse) {
-                        $scope.chatMessages = successResponse.data.chatMessages;
-                        //console.log($scope.chatMessages);
-                    },
-                    function (errorResponse) {
-                        // handle errors here
-                    });
-            };
+                    $scope.setSelectedUser = function (selectedUser) {
+                        $scope.selectedUser = selectedUser;
+                        //console.log($scope.selectedUser);
+                        $scope.GetMessage();
+                    }
 
-            $scope.PostMessage = function () {
-                var post = $http({
-                    method: "POST",
-                    url: "/UserFriends/PostMessage",
-                    dataType: 'json',
-                    data: { message: $scope.message, userId: $scope.user.Id, toWhomId: $scope.selectedUser.Id },
-                    headers: { "Content-Type": "application/json" }
-                });
-            }
+                    $scope.GetMessage = function () {
+                        $http({
+                            url: '/UserFriends/GetMessage',
+                            method: "GET",
+                            params: { userId: $scope.user.Id, withWhomId: $scope.selectedUser.Id }
+                        }).then(
+                            function (successResponse) {
+                                $scope.chatMessages = successResponse.data.chatMessages;
+                                //angular.forEach($scope.chatMessages, function (value, key) {
+                                //    $scope.formatedDate = value.Date.toString().replace('/Date(', '').replace(')/', '');
+                                //    $scope.formatedDate = $filter('date', $scope.formatedDate);
+                                //    console.log($scope.formatedDate);
+                                //});
+                                //console.log($scope.chatMessages);
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
 
-            $scope.AcceptRequest = function () {
-                var post = $http({
-                    method: "POST",
-                    url: "/UserFriends/AcceptRequest",
-                    dataType: 'json',
-                    data: { userId: $scope.user.Id, withWhomId: $scope.selectedUser.Id },
-                    headers: { "Content-Type": "application/json" }
-                }).then(
-                    function (successResponse) {
-                        $scope.getUsersFriends();
-                        $scope.getUserRequests();
-                        $scope.GetRequestsToUser();
-                    },
-                    function (errorResponse) {
-                        // handle errors here
-                    });                
-            };
+                    $scope.PostMessage = function () {
+                        if ($scope.message) {
+                            var post = $http({
+                                method: "POST",
+                                url: "/UserFriends/PostMessage",
+                                dataType: 'json',
+                                data: { message: $scope.message, userId: $scope.user.Id, toWhomId: $scope.selectedUser.Id },
+                                headers: { "Content-Type": "application/json" }
+                            }).then(
+                                function (successResponse) {
+                                    $scope.message = null;
+                                    $scope.oneMessage = successResponse.data.oneMessage;
+                                    $scope.chatHub.server.sendMessage($scope.oneMessage, $scope.user.Id, $scope.selectedUser.Id);
+                                },
+                                function (errorResponse) {
+                                    // handle errors here
+                                });
+                        }
 
-            $scope.DeclineRequest = function () {
-                var post = $http({
-                    method: "POST",
-                    url: "/UserFriends/DeclineRequest",
-                    dataType: 'json',
-                    data: { userId: $scope.user.Id, withWhomId: $scope.selectedUser.Id },
-                    headers: { "Content-Type": "application/json" }
-                }).then(
-                    function (successResponse) {
-                        $scope.getUsersFriends();
-                        $scope.getUserRequests();
-                        $scope.GetRequestsToUser();
-                    },
-                    function (errorResponse) {
-                        // handle errors here
-                    }); 
-            };
+                    };
 
-            $scope.checkIfItFirstLogin = function () {
-                if ($scope.user.Image == null) {
-                    $scope.launch('create');
-                }
-            };
+                    $scope.chatHub.client.addMessage = function (message) {
+                        $scope.chatMessages.push(message);
+                        $scope.$apply();
+                    };
 
-            $scope.setSearchParam = function(keyEvent) {
-                $scope.searchUser();
-                //console.log($scope.searchParam);
-            }
+                    $scope.AcceptRequest = function () {
+                        var post = $http({
+                            method: "POST",
+                            url: "/UserFriends/AcceptRequest",
+                            dataType: 'json',
+                            data: { userId: $scope.user.Id, withWhomId: $scope.selectedUser.Id },
+                            headers: { "Content-Type": "application/json" }
+                        }).then(
+                            function (successResponse) {
+                                $scope.chatHub.server.acceptRequest(successResponse.data.user, successResponse.data.userFriend);
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
+
+                    $scope.chatHub.client.updateAcceptedRequest = function (user, userFriend) {
+                        let indexRequestToUser = $scope.requestsToUser.findIndex(item => item.Id === userFriend.Id);
+                        if (indexRequestToUser != -1) {
+                            $scope.requestsToUser.splice(indexRequestToUser, 1);
+                            $scope.userFriends.push(userFriend);
+                        }
+                        let indexUserRequest = $scope.userRequests.findIndex(item => item.Id === user.Id);
+                        if (indexUserRequest != -1) {
+                            $scope.userRequests.splice(indexUserRequest, 1);
+                            $scope.userFriends.push(user);
+                        }
+                        $scope.$apply();
+                    };
+
+                    $scope.DeclineRequest = function () {
+                        var post = $http({
+                            method: "POST",
+                            url: "/UserFriends/DeclineRequest",
+                            dataType: 'json',
+                            data: { userId: $scope.user.Id, withWhomId: $scope.selectedUser.Id },
+                            headers: { "Content-Type": "application/json" }
+                        }).then(
+                            function (successResponse) {
+                                $scope.chatHub.server.declineRequest(successResponse.data.user, successResponse.data.userFriend);
+                                //$scope.getUsersFriends();
+                                //$scope.getUserRequests();
+                                //$scope.GetRequestsToUser();
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
+
+                    $scope.chatHub.client.updateDeclineRequest = function (user, userFriend) {
+                        let indexRequestToUser = $scope.requestsToUser.findIndex(item => item.Id === userFriend.Id);
+                        if (indexRequestToUser != -1) {
+                            $scope.requestsToUser.splice(indexRequestToUser, 1);
+                        }
+                        let indexUserRequest = $scope.userRequests.findIndex(item => item.Id === user.Id);
+                        if (indexUserRequest != -1) {
+                            $scope.userRequests.splice(indexUserRequest, 1);
+                        }
+                        $scope.$apply();
+                    };
+
+                    $scope.CreateRequest = function () {
+                        var post = $http({
+                            method: "POST",
+                            url: "/UserFriends/CreateRequest",
+                            dataType: 'json',
+                            data: { userId: $scope.user.Id, toWhomId: $scope.selectedUser.Id },
+                            headers: { "Content-Type": "application/json" }
+                        }).then(
+                            function (successResponse) {
+                                $scope.chatHub.server.createRequest(successResponse.data.user, successResponse.data.userToWhomSendRequest);
+                                //$scope.getUsersFriends();
+                                //$scope.getUserRequests();
+                                //$scope.GetRequestsToUser();
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
+
+                    $scope.chatHub.client.createNewRequest = function (user, userToWhomSendRequest) {
+                        if ($scope.selectedUser.Id != userToWhomSendRequest.Id) {
+                            $scope.requestsToUser.push(user);
+                        }
+                        else {
+                            $scope.userRequests.push(userToWhomSendRequest);
+                        }
+                        $scope.searchParam = "";
+                        $scope.findedUsers = {};
+                        $scope.$apply();
+                    };
+
+                    $scope.checkIfItFirstLogin = function () {
+                        if ($scope.user.Image == null) {
+                            $scope.launch('create');
+                        }
+                    };
+
+                    $scope.setSearchParam = function (keyEvent) {
+                        $scope.searchUser();
+                    }
 
 
-            $scope.searchUser = function () {
-                $http({
-                    url: '/UserFriends/SearchUser',
-                    method: "GET",
-                    params: { userName: $scope.searchParam, userId: $scope.user.Id }
-                }).then(
-                    function (successResponse) {
-                        $scope.findedUsers = successResponse.data.findedUsers;
-                        //console.log($scope.findedUsers[0].Status);
-                    },
-                    function (errorResponse) {
-                        // handle errors here
-                    });
-            };
+                    $scope.searchUser = function () {
+                        $http({
+                            url: '/UserFriends/SearchUser',
+                            method: "GET",
+                            params: { userName: $scope.searchParam, userId: $scope.user.Id }
+                        }).then(
+                            function (successResponse) {
+                                $scope.findedUsers = successResponse.data.findedUsers;
+                            },
+                            function (errorResponse) {
+                                // handle errors here
+                            });
+                    };
 
-            //$scope.cancel = function () {
-            //    $modalInstance.dismiss('canceled');
-            //};
 
-            //$scope.save = function () {
-            //    $modalInstance.close($scope.user);
-            //};
 
-            //$scope.hitEnter = function (evt) {
-            //    if (angular.equals(evt.keyCode, 13) && !(angular.equals($scope.user, null) || angular.equals($scope.user, '')))
-            //        $scope.save();
-            //};
+                    //$interval(function () {
+                    //if (!$scope.searchParam) {
+                    //    $scope.getUsersFriends();
+                    //    $scope.getUserRequests();
+                    //    $scope.GetRequestsToUser();
+                    //}
+                    //else {
+                    //    $scope.searchUser();
+                    //}
+                    //}, 1000);
 
-            $interval(function () {
-                if (!$scope.searchParam) {
-                    $scope.getUsersFriends();
-                    $scope.getUserRequests();
-                    $scope.GetRequestsToUser();
-                }
-                else {
-                    $scope.searchUser();
-                }
-                //if ($scope.searchParam == null) {
-                //    console.log("null");
-                //}
-                //if ($scope.searchParam != null) {
-                //    console.log("not");
-                //}
-                //if ($scope.searchParam == undefined) {
-                //    console.log("undefined");
-                //}
-            }, 10000);
+                    //$interval(function () {
+                    //    if ($scope.selectedUser.Id != null) {
+                    //        //$scope.GetMessage();
+                    //        //console.log($scope.chatMessages);
+                    //    }
+                    //}, 1000);
 
-            $interval(function () {
-                if ($scope.selectedUser.Id != null) {
-                    $scope.GetMessage();
-                }
-            }, 1000);
+                    $scope.getUser();
+                    $scope.getToken();
+                }])
+                .controller('UserProfileCtrl', function ($scope, $modalInstance, $rootScope, $http) {
+                    $scope.user = { user: '' };
 
-            $scope.getUser();
-            $scope.getToken();
-        }])
-            //.run(['$templateCache', function ($templateCache) {
-            //    $templateCache.put('/dialogs/whatsyourname.html', '<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">User\'s Profile</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">FirstName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.FirstName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">LastName:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.LastName" ng-keyup="hitEnter($event)" required></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save(); UpdateUserProfile()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
-            //}]);
-            .controller('UserProfileCtrl', function ($scope, $modalInstance, $rootScope, $http) {
-                $scope.user = { user: '' };
+                    $scope.user = $rootScope.user;
 
-                $scope.user = $rootScope.user;
+                    //console.log($scope.user);
 
-                //console.log($scope.user);
+                    $scope.cancel = function () {
+                        $modalInstance.dismiss('canceled');
+                    };
 
-                $scope.cancel = function () {
-                    $modalInstance.dismiss('canceled');
-                };
+                    $scope.save = function () {
+                        $modalInstance.close($scope.user);
+                    }; // end save
 
-                $scope.save = function () {
-                    $modalInstance.close($scope.user);
-                }; // end save
+                    $scope.hitEnter = function (evt) {
+                        if (angular.equals(evt.keyCode, 13) && !(angular.equals($scope.user, null) || angular.equals($scope.user, '')))
+                            $scope.save();
+                    };
+                })
+                .run(['$templateCache', function ($templateCache) {
+                    $templateCache.put('/dialogs/whatsyourname.html', '<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">User\'s Profile</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">UserName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.UserName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">FirstName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.FirstName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">LastName:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.LastName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">Photo:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.Image" ng-keyup="hitEnter($event)" required></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save(); UpdateUserProfile()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
+                }]);
+        })();
 
-                $scope.hitEnter = function (evt) {
-                    if (angular.equals(evt.keyCode, 13) && !(angular.equals($scope.user, null) || angular.equals($scope.user, '')))
-                        $scope.save();
-                };
-            })
-            .run(['$templateCache', function ($templateCache) {
-                $templateCache.put('/dialogs/whatsyourname.html', '<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">User\'s Profile</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">UserName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.UserName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">FirstName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.FirstName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">LastName:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.LastName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">Photo:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.Image" ng-keyup="hitEnter($event)" required></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save(); UpdateUserProfile()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
-            }]);
-    })();
 
-    //function readURL(input) {
-    //    if (input.files && input.files[0]) {
-    //        var reader = new FileReader();
 
-    //        reader.onload = function (e) {
-    //            $('#imageUpload')
-    //                .attr('src', e.target.result)
-    //                .width(100)
-    //                .height(100);
-    //        };
+                    //function readURL(input) {
+                    //    if (input.files && input.files[0]) {
+                    //        var reader = new FileReader();
 
-    //        reader.readAsDataURL(input.files[0]);
-    //    }
-    //}
-</script>
+                    //        reader.onload = function (e) {
+                    //            $('#imageUpload')
+                    //                .attr('src', e.target.result)
+                    //                .width(100)
+                    //                .height(100);
+                    //        };
+
+                    //        reader.readAsDataURL(input.files[0]);
+                    //    }
+                    //}
+    </script>
+}
+

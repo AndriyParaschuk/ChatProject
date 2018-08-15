@@ -53,5 +53,10 @@ namespace ChatProject.Web.Controllers
             //_messageRepository.SaveChanges();
             return View();
         }
+
+        public ActionResult Chat()
+        {
+            return View();
+        }
     }
 }

@@ -718,3 +718,7 @@ C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Ninject.Web.WebApi.xm
 C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Ninject.Web.WebApi.WebHost.dll
 C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Ninject.Web.WebApi.WebHost.xml
 C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\WebActivatorEx.dll
+C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

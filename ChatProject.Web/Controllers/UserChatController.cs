@@ -1,4 +1,5 @@
 ﻿using ChatProject.BL.Models;
+using ChatProject.DAL.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace ChatProject.Web.Controllers
 {
     public class UserChatController : Controller
     {
-        public ActionResult ChatPage(User user)
+        public ActionResult ChatPage()
         {
-            return View(user);
+            return View();
         }
     }
 }
