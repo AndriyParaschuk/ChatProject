@@ -1,6 +1,9 @@
 ﻿using ChatProject.DAL.Core;
+using ChatProject.DAL.Repository;
 using ChatProject.Web.Models;
+using ChatProject.Web.UserIdProvider;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
@@ -25,6 +28,10 @@ namespace ChatProject.Web.App_Start
                 LoginPath = new PathString("/Account/Login"),
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+
+            var idProvider = new CustomUserIdProvider();
+
+            GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
 
             app.MapSignalR();
         }

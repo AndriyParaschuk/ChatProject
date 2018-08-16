@@ -14,6 +14,7 @@ namespace ChatProject.BL.Models
         public string LastName { get; set; }
         public string Image { get; set; }
         public bool MarkedAsDeleted { get; set; }
+        public bool MarkedAsLoggedIn { get; set; }
         //public long? FriendId { get; set; }
         //public Friend Friend { get; set; }
 

@@ -133,6 +133,9 @@ namespace ChatProject.Web.Controllers
                         if (String.IsNullOrEmpty(returnUrl))
                         {
                             //string token = Token(user);
+                            user.MarkedAsLoggedIn = true;
+                            _userRepository.Update(user);
+                            _userRepository.SaveChanges();
                             return RedirectToAction("ChatPage", "UserChat"/*, user.Id*/);
                         }
                         return Redirect(returnUrl);
@@ -148,6 +151,10 @@ namespace ChatProject.Web.Controllers
         }
         public ActionResult Logout()
         {
+            //User user = UserManager.FindById(User.Identity.GetUserId());
+            //user.MarkedAsLoggedIn = false;
+            //_userRepository.Update(user);
+            //_userRepository.SaveChanges();
             AuthenticationManager.SignOut();
             return RedirectToAction("Login");
         }
@@ -231,6 +238,24 @@ namespace ChatProject.Web.Controllers
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        public ActionResult UserEnter(string userId)
+        {
+            User currentUser = _userRepository.GetById(userId);
+            currentUser.MarkedAsLoggedIn = true;
+            _userRepository.Update(currentUser);
+            _userRepository.SaveChanges();
+            return Json(new { user = currentUser }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult OfflineUser(string userId)
+        {
+            User currentUser = _userRepository.GetById(userId);
+            currentUser.MarkedAsLoggedIn = false;
+            _userRepository.Update(currentUser);
+            _userRepository.SaveChanges();
+            return Json(new { user = currentUser }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Token()

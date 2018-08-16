@@ -1,6 +1,6 @@
 ﻿(function () {
-    var app = angular.module('app', ['ui.bootstrap', 'dialogs'])
-        .controller('AccountCtrl', ['$scope', '$http', '$dialogs', '$rootScope', '$interval', '$filter', function ($scope, $http, $dialogs, $rootScope, $interval, $filter) {
+    var app = angular.module('app', ['ui.bootstrap', 'dialogs', 'luegg.directives'])
+        .controller('AccountCtrl', ['$scope', '$http', '$dialogs', '$rootScope', '$interval', '$filter', '$window', function ($scope, $http, $dialogs, $rootScope, $interval, $filter, $window) {
             $scope.selectedUser = {};
             $scope.user = {};
             $scope.token = {};
@@ -14,7 +14,6 @@
             $scope.canSend = true;
 
             $scope.chatHub = $.connection.chatHub;
-            $.connection.hub.start();
 
             $scope.getUser = function () {
                 $http.get('/Account/GetUser').then(
@@ -25,10 +24,16 @@
                         $scope.getUsersFriends();
                         $scope.getUserRequests();
                         $scope.GetRequestsToUser();
+                        $scope.UserEnter();
+                        $.connection.hub.start().then(
+                            function (successResponse) {
+                                $scope.chatHub.server.enter($scope.user);
+                            });
                     },
                     function (errorResponse) {
                         // handle errors here
-                    });
+                    }
+                );
             };
 
             $scope.getToken = function () {
@@ -116,11 +121,11 @@
                 $scope.selectedUser = selectedUser;
                 let indexRequestToUser = $scope.userFriends.findIndex(item => item.Id === selectedUser.Id);
                 if (indexRequestToUser != -1) {
-                    console.log("false");
+                    //console.log("false");
                     $scope.canSend = false;
                 }
                 else {
-                    console.log("true ");
+                    //console.log("true");
                     $scope.canSend = true;
                 }
                 $scope.GetMessage();
@@ -194,6 +199,7 @@
                     $scope.userRequests.splice(indexUserRequest, 1);
                     $scope.userFriends.push(user);
                 }
+                $scope.canSend = false;
                 $scope.$apply();
             };
 
@@ -264,7 +270,6 @@
                 $scope.searchUser();
             }
 
-
             $scope.searchUser = function () {
                 $http({
                     url: '/UserFriends/SearchUser',
@@ -279,6 +284,50 @@
                     });
             };
 
+            $scope.UserEnter = function () {
+                var post = $http({
+                    method: "POST",
+                    url: "/Account/UserEnter",
+                    dataType: 'json',
+                    data: { userId: $scope.user.Id },
+                    headers: { "Content-Type": "application/json" }
+                });
+            }
+
+            $scope.chatHub.client.enterUser = function (user) {
+                let indexUser = $scope.userFriends.findIndex(item => item.Id === user.Id);
+                if (indexUser != -1) {
+                    $scope.userFriends[indexUser].MarkedAsLoggedIn = true;
+                }
+                $scope.$apply();
+            };
+
+            $scope.onExit = function () {
+                var post = $http({
+                    method: "POST",
+                    url: "/Account/OfflineUser",
+                    dataType: 'json',
+                    data: { userId: $scope.user.Id },
+                    headers: { "Content-Type": "application/json" }
+                }).then(
+                    function (successResponse) {
+                        $scope.chatHub.server.exit(successResponse.data.user);
+                    },
+                    function (errorResponse) {
+                        // handle errors here
+                    });
+            };
+
+            $scope.chatHub.client.exitUser = function (user) {
+                let indexUser = $scope.userFriends.findIndex(item => item.Id === user.Id);
+                if (indexUser != -1) {
+                    $scope.userFriends[indexUser].MarkedAsLoggedIn = false;
+                }
+                $scope.$apply();
+            };
+
+            $window.onbeforeunload = $scope.onExit;
+
             $scope.getUser();
             $scope.getToken();
         }])
@@ -286,8 +335,6 @@
             $scope.user = { user: '' };
 
             $scope.user = $rootScope.user;
-
-            //console.log($scope.user);
 
             $scope.cancel = function () {
                 $modalInstance.dismiss('canceled');
@@ -304,8 +351,10 @@
         })
         .run(['$templateCache', function ($templateCache) {
             $templateCache.put('/dialogs/whatsyourname.html', '<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">User\'s Profile</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">UserName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.UserName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">FirstName:</label><input type ="text" class="form-control" name="username" id="username" ng-model="user.FirstName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">LastName:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.LastName" ng-keyup="hitEnter($event)" required><label class="control-label" for="username">Photo:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.Image" ng-keyup="hitEnter($event)" required></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save(); UpdateUserProfile()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
-        }]);
+        }])
 })();
+
+
 
 
 

@@ -34,17 +34,6 @@
                 </div>
                 <br>
                 <div id="contacts">
-                    @*<li class="contact">
-                            <div class="wrap">
-                                <span class="contact-status online"></span>
-                                <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                                <div class="meta">
-                                    <p class="name">Louis Litt</p>
-                                    <p class="preview">You just got LITT up, Mike.</p>
-                                </div>
-                            </div>
-                            <li class="contact active">
-                        </li>*@
                     <div ng-if="!searchParam">
                         <div ng-repeat="item in requestsToUser">
                             <ul ng-if="item.UserName != selectedUser.UserName">
@@ -75,22 +64,46 @@
                         <div ng-repeat="item in userFriends">
                             <ul ng-if="item.UserName != selectedUser.UserName">
                                 <li class="contact" ng-click="setSelectedUser(item)">
-                                    <div class="wrap">
-                                        <img src="~/Images/{{item.Image}}" alt="" />
-                                        <div class="meta">
-                                            <p>{{item.UserName}}</p>
-                                            <p class="preview"></p>
+                                    <div ng-if="item.MarkedAsLoggedIn == true">
+                                        <div class="wrap">
+                                            <span class="contact-status online"></span>
+                                            <img src="~/Images/{{item.Image}}" alt="" />
+                                            <div class="meta">
+                                                <p>{{item.UserName}}</p>
+                                                <p class="preview"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="item.MarkedAsLoggedIn == false">
+                                        <div class="wrap">
+                                            <img src="~/Images/{{item.Image}}" alt="" />
+                                            <div class="meta">
+                                                <p>{{item.UserName}}</p>
+                                                <p class="preview"></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                             <ul ng-if="item.UserName == selectedUser.UserName">
-                                <li class="contact active" ng-click="setSelectedUser(item)">
-                                    <div class="wrap">
-                                        <img src="~/Images/{{item.Image}}" alt="" />
-                                        <div class="meta">
-                                            <p>{{item.UserName}}</p>
-                                            <p class="preview"></p>
+                                <li class="contact" ng-click="setSelectedUser(item)">
+                                    <div ng-if="item.MarkedAsLoggedIn == true">
+                                        <div class="wrap active">
+                                            <span class="contact-status online"></span>
+                                            <img src="~/Images/{{item.Image}}" alt="" />
+                                            <div class="meta">
+                                                <p>{{item.UserName}}</p>
+                                                <p class="preview"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="item.MarkedAsLoggedIn == false">
+                                        <div class="wrap">
+                                            <img src="~/Images/{{item.Image}}" alt="" />
+                                            <div class="meta">
+                                                <p>{{item.UserName}}</p>
+                                                <p class="preview"></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -242,7 +255,7 @@
                     @*<img src="~/Images/{{selectedUser.Image}}" alt="" />*@
                     <p>{{selectedUser.UserName}}</p>
                 </div>
-                <div class="messages" ng-if="selectedUser.UserName != null">
+                <div class="messages" ng-if="selectedUser.UserName != null" scroll-glue>
                     <div ng-repeat="item in chatMessages">
                         <ul>
                             <li class="sent" ng-if="item.FromId != user.Id">
@@ -270,7 +283,7 @@
                     </div>
                     <br />
                     <div class="wrap">
-                        <input class="myMessageInput" type="text" placeholder="Write your message..." ng-model="message" ng-keyup="$event.keyCode == 13 ? PostMessage() : null" ng-disabled="canSend"/>
+                        <input class="myMessageInput" type="text" placeholder="Write your message..." ng-model="message" ng-keyup="$event.keyCode == 13 ? PostMessage() : null" ng-disabled="canSend" />
                         @*<i class="fa fa-paperclip attachment" aria-hidden="true"></i>*@
                         <button class="submit btn btn-primary" ng-click="PostMessage()" ng-disabled="canSend"><i class="fa fa-paper-plane-o"></i></button>
                     </div>
@@ -278,6 +291,12 @@
             </div>
         </div>
     </div>
+
+    <div ng-app="app" ng-controller="exitController">
+        <a href="http://www.disney.com">Leave page</a>
+    </div>
+
+
 </body>
 </html>
 
@@ -292,6 +311,8 @@
 
     <script src="~/Scripts/jquery.signalR-2.3.0.js" type="text/javascript"></script>
     <script src="~/signalr/hubs"></script>
+
+    <script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script>
 
     <script src="~/Scripts/Controller/AccountCtrl.js"></script>
 }

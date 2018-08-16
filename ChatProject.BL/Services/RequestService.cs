@@ -46,7 +46,7 @@ namespace ChatProject.BL.Services
         public void CreateRequest(string userId, string toWhomId)
         {
             _messageRepository.Create(new Message() { FromId = userId, ToId = toWhomId, TextMessage = "Hi " + 
-                _userRepository.GetById(toWhomId).UserName + ") I want to add you to my friend" });
+                _userRepository.GetById(toWhomId).UserName + ") I would like to add you as a friend"});
             _messageRepository.SaveChanges();
 
             _requestRepository.Create(new Request() { FromId = userId, ToId = toWhomId });
