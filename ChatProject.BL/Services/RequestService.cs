@@ -25,32 +25,33 @@ namespace ChatProject.BL.Services
 
         public void AcceptRequest(string userId, string withWhomId)
         {
-            Request currentRequest = _requestRepository.GetAll().FirstOrDefault(item => item.FromId == withWhomId && item.ToId == userId);
+            //Request currentRequest = _requestRepository.GetAll().FirstOrDefault(item => item.FromId == withWhomId && item.ToId == userId);
+            Request currentRequest =  _requestRepository.GetRequestFromUserToUser(userId, withWhomId);
             currentRequest.Status = RequestStatus.Accept;
             _requestRepository.Update(currentRequest);
-            _requestRepository.SaveChanges();
+            //_requestRepository.SaveChanges(); !!!!!
 
             UserFriend currentUserFriend = new UserFriend() { FriendId = withWhomId, UserId = userId };
             _userFriendRepository.Create(currentUserFriend);
-            _userFriendRepository.SaveChanges();
+            //_userFriendRepository.SaveChanges(); !!!!!
         }
 
         public void DeclineRequest(string userId, string withWhomId)
         {
-            Request request = _requestRepository.GetAll().FirstOrDefault(item => item.FromId == withWhomId && item.ToId == userId);
+            Request request = _requestRepository.GetRequestFromUserToUser(userId, withWhomId);
             request.Status = RequestStatus.Decline;
             _requestRepository.Update(request);
-            _requestRepository.SaveChanges();
+            //_requestRepository.SaveChanges(); !!!!!
         }
 
         public void CreateRequest(string userId, string toWhomId)
         {
             _messageRepository.Create(new Message() { FromId = userId, ToId = toWhomId, TextMessage = "Hi " + 
-                _userRepository.GetById(toWhomId).UserName + ") I would like to add you as a friend"});
-            _messageRepository.SaveChanges();
+            _userRepository.GetById(toWhomId).UserName + ") I would like to add you as a friend"});
+            //_messageRepository.SaveChanges(); !!!!!
 
             _requestRepository.Create(new Request() { FromId = userId, ToId = toWhomId });
-            _requestRepository.SaveChanges();
+            //_requestRepository.SaveChanges(); !!!!!
         }
     }
 }

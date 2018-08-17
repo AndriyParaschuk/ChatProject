@@ -9,7 +9,7 @@ namespace ChatProject.DAL.Repository
 {
     public class MessageRepository : Repository<Message, long>, IMessageRepository
     {
-        public MessageRepository(UnitOfWork uow) : base(uow)
+        public MessageRepository(ChatContext context) : base(context)
         {
         }
     }

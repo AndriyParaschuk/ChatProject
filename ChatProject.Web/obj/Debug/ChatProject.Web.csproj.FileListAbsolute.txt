@@ -722,3 +722,7 @@ C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.AspNet.Sign
 C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.AspNet.SignalR.Core.xml
 C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.Extensions.DependencyInjection.dll
+C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.Extensions.DependencyInjection.xml
+C:\TestProject\ChatProject\ChatProject\ChatProject.Web\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml

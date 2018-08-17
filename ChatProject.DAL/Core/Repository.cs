@@ -9,13 +9,13 @@ namespace ChatProject.DAL.Core
 {
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey>
     {
-        public readonly UnitOfWork _unitOfWork;
+        private DbContext _dbContext;
         protected DbSet<TEntity> _dbSet;
 
-        public Repository(UnitOfWork unitOfWork)
+        public Repository(DbContext dbContext)
         {
-            _unitOfWork = unitOfWork;
-            _dbSet = _unitOfWork.Context.Set<TEntity>();
+            _dbContext = dbContext;
+            _dbSet = _dbContext.Set<TEntity>();
         }
 
         public void Create(TEntity entity)
@@ -47,9 +47,10 @@ namespace ChatProject.DAL.Core
         {
             _dbSet.AddOrUpdate(entity);
         }
+
         public void SaveChanges()
         {
-            _unitOfWork.Commit();
+            _dbContext.SaveChanges();
         }
     }
 }

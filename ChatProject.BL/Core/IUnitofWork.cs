@@ -7,5 +7,7 @@ namespace ChatProject.BL.Interfaces
     public interface IUnitOfWork
     {
         void Commit();
+
+        T GetRepository<T>();
     }
 }

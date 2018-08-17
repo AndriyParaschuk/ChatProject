@@ -7,5 +7,8 @@ namespace ChatProject.BL.Interfaces
 {
     public interface IUserFriendRepository : IRepository<UserFriend, long>
     {
+        List<string> GetUserFriendsId(string userId);
+
+        UserFriend GetUserFriend(string userId, string toWhomId);
     }
 }

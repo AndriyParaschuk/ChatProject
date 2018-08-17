@@ -28,7 +28,7 @@ namespace ChatProject.BL.Services
         {
             Message currentMessage = new Message() { FromId = userId, ToId = toWhomId, TextMessage = message };
             _messageRepository.Create(currentMessage);
-            _messageRepository.SaveChanges();
+            //_messageRepository.SaveChanges(); !!!!!
             return currentMessage;
         }
     }

@@ -102,6 +102,27 @@
           "lib/netstandard1.3/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.Extensions.DependencyInjection/2.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        }
+      },
       "Microsoft.IdentityModel.JsonWebTokens/5.2.4": {
         "type": "package",
         "dependencies": {
@@ -1594,6 +1615,7 @@
           "EntityFramework": "6.2.0",
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",
           "Microsoft.AspNet.Identity.Owin": "2.2.2",
+          "Microsoft.Extensions.DependencyInjection": "2.1.1",
           "Microsoft.Owin.Host.SystemWeb": "4.0.0",
           "Ninject": "3.3.3",
           "Ninject.MVC5": "3.3.0",
@@ -1755,6 +1777,34 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection/2.1.1": {
+      "sha512": "2nshYaLTn73Ie+/yTkb7EZIXwQeFIXsYCBy/jSY9bMayYykGNjdWa25frayhuPAGVbZpEgfgp3d4JRVEuVyEqQ==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection/2.1.1",
+      "files": [
+        ".signature.p7s",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
+        "microsoft.extensions.dependencyinjection.2.1.1.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.1": {
+      "sha512": "PW1596sF97gpIc1JuUuYvTmeLfeqC5whbWPsWgJhN0fdwz683him3b/HB0dqhFesVssOjnnA0fEz4+S0gUeBqA==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/2.1.1",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.2.1.1.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec"
       ]
     },
     "Microsoft.IdentityModel.JsonWebTokens/5.2.4": {
@@ -5418,6 +5468,7 @@
       "EntityFramework >= 6.2.0",
       "Microsoft.AspNet.Identity.EntityFramework >= 2.2.2",
       "Microsoft.AspNet.Identity.Owin >= 2.2.2",
+      "Microsoft.Extensions.DependencyInjection >= 2.1.1",
       "Microsoft.Owin.Host.SystemWeb >= 4.0.0",
       "NETStandard.Library >= 2.0.3",
       "Ninject >= 3.3.3",
@@ -5486,6 +5537,10 @@
           "Microsoft.AspNet.Identity.Owin": {
             "target": "Package",
             "version": "[2.2.2, )"
+          },
+          "Microsoft.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "[2.1.1, )"
           },
           "Microsoft.Owin.Host.SystemWeb": {
             "target": "Package",

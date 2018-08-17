@@ -8,6 +8,7 @@
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="4.0.0" />
     <PackageReference Include="Ninject" Version="3.3.3" />
     <PackageReference Include="Ninject.MVC5" Version="3.3.0" />

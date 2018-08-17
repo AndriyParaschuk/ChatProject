@@ -135,7 +135,7 @@ namespace ChatProject.Web.Controllers
                             //string token = Token(user);
                             user.MarkedAsLoggedIn = true;
                             _userRepository.Update(user);
-                            _userRepository.SaveChanges();
+                            //_userRepository.SaveChanges(); !!!!!
                             return RedirectToAction("ChatPage", "UserChat"/*, user.Id*/);
                         }
                         return Redirect(returnUrl);
@@ -245,7 +245,7 @@ namespace ChatProject.Web.Controllers
             User currentUser = _userRepository.GetById(userId);
             currentUser.MarkedAsLoggedIn = true;
             _userRepository.Update(currentUser);
-            _userRepository.SaveChanges();
+            //_userRepository.SaveChanges(); !!!!!
             return Json(new { user = currentUser }, JsonRequestBehavior.AllowGet);
         }
 
@@ -254,7 +254,7 @@ namespace ChatProject.Web.Controllers
             User currentUser = _userRepository.GetById(userId);
             currentUser.MarkedAsLoggedIn = false;
             _userRepository.Update(currentUser);
-            _userRepository.SaveChanges();
+            //_userRepository.SaveChanges(); !!!!!
             return Json(new { user = currentUser }, JsonRequestBehavior.AllowGet);
         }
 
@@ -348,7 +348,7 @@ namespace ChatProject.Web.Controllers
                 //}
                 //user.Image = user.Image.Substring(12);
                 _userRepository.Update(user);
-                _userRepository.SaveChanges();
+                //_userRepository.SaveChanges(); !!!!!
             }
             catch (Exception ex)
             {
